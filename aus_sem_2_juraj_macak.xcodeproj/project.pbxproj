@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		16891E252197122800C11030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16891E242197122800C11030 /* AppDelegate.swift */; };
-		16891E272197122800C11030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16891E262197122800C11030 /* ViewController.swift */; };
+		16891E272197122800C11030 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16891E262197122800C11030 /* TestController.swift */; };
 		16891E2A2197122800C11030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16891E282197122800C11030 /* Main.storyboard */; };
 		16891E2C2197122900C11030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16891E2B2197122900C11030 /* Assets.xcassets */; };
 		16891E2F2197122900C11030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16891E2D2197122900C11030 /* LaunchScreen.storyboard */; };
+		16891E3D219712FD00C11030 /* TestController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16891E3C219712FD00C11030 /* TestController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		16891E212197122800C11030 /* aus_sem_2_juraj_macak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aus_sem_2_juraj_macak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16891E242197122800C11030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		16891E262197122800C11030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		16891E262197122800C11030 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		16891E292197122800C11030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16891E2B2197122900C11030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16891E2E2197122900C11030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16891E302197122900C11030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16891E3C219712FD00C11030 /* TestController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,63 @@
 		16891E232197122800C11030 /* aus_sem_2_juraj_macak */ = {
 			isa = PBXGroup;
 			children = (
-				16891E242197122800C11030 /* AppDelegate.swift */,
-				16891E262197122800C11030 /* ViewController.swift */,
-				16891E282197122800C11030 /* Main.storyboard */,
-				16891E2B2197122900C11030 /* Assets.xcassets */,
-				16891E2D2197122900C11030 /* LaunchScreen.storyboard */,
-				16891E302197122900C11030 /* Info.plist */,
+				16891E392197125600C11030 /* New Group */,
+				16891E382197124600C11030 /* View */,
+				16891E372197124100C11030 /* Model */,
+				16891E362197123A00C11030 /* Application */,
 			);
 			path = aus_sem_2_juraj_macak;
+			sourceTree = "<group>";
+		};
+		16891E362197123A00C11030 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				16891E2B2197122900C11030 /* Assets.xcassets */,
+				16891E302197122900C11030 /* Info.plist */,
+				16891E242197122800C11030 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		16891E372197124100C11030 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16891E382197124600C11030 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				16891E3B219712D300C11030 /* Test */,
+				16891E3A2197127A00C11030 /* Initial */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		16891E392197125600C11030 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		16891E3A2197127A00C11030 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				16891E282197122800C11030 /* Main.storyboard */,
+				16891E2D2197122900C11030 /* LaunchScreen.storyboard */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		16891E3B219712D300C11030 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				16891E262197122800C11030 /* TestController.swift */,
+				16891E3C219712FD00C11030 /* TestController.storyboard */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16891E3D219712FD00C11030 /* TestController.storyboard in Resources */,
 				16891E2F2197122900C11030 /* LaunchScreen.storyboard in Resources */,
 				16891E2C2197122900C11030 /* Assets.xcassets in Resources */,
 				16891E2A2197122800C11030 /* Main.storyboard in Resources */,
@@ -135,7 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16891E272197122800C11030 /* ViewController.swift in Sources */,
+				16891E272197122800C11030 /* TestController.swift in Sources */,
 				16891E252197122800C11030 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +335,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = aus_sem_2_juraj_macak/Info.plist;
+				DEVELOPMENT_TEAM = 3B3LMUX9VD;
+				INFOPLIST_FILE = "$(SRCROOT)/aus_sem_2_juraj_macak/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +353,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = aus_sem_2_juraj_macak/Info.plist;
+				DEVELOPMENT_TEAM = 3B3LMUX9VD;
+				INFOPLIST_FILE = "$(SRCROOT)/aus_sem_2_juraj_macak/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
