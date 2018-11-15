@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16854D17219DAFB60078619B /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D16219DAFB60078619B /* Record.swift */; };
+		16854D19219DAFBE0078619B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D18219DAFBE0078619B /* Block.swift */; };
+		16854D1B219DAFCC0078619B /* DynamicHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D1A219DAFCC0078619B /* DynamicHash.swift */; };
+		16854D1D219DB01A0078619B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D1C219DB01A0078619B /* Property.swift */; };
 		16891E252197122800C11030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16891E242197122800C11030 /* AppDelegate.swift */; };
 		16891E272197122800C11030 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16891E262197122800C11030 /* TestController.swift */; };
 		16891E2A2197122800C11030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16891E282197122800C11030 /* Main.storyboard */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16854D16219DAFB60078619B /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		16854D18219DAFBE0078619B /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		16854D1A219DAFCC0078619B /* DynamicHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHash.swift; sourceTree = "<group>"; };
+		16854D1C219DB01A0078619B /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		16891E212197122800C11030 /* aus_sem_2_juraj_macak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aus_sem_2_juraj_macak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16891E242197122800C11030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16891E262197122800C11030 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
@@ -56,7 +64,7 @@
 		16891E232197122800C11030 /* aus_sem_2_juraj_macak */ = {
 			isa = PBXGroup;
 			children = (
-				16891E392197125600C11030 /* New Group */,
+				16891E392197125600C11030 /* Structures */,
 				16891E382197124600C11030 /* View */,
 				16891E372197124100C11030 /* Model */,
 				16891E362197123A00C11030 /* Application */,
@@ -77,6 +85,7 @@
 		16891E372197124100C11030 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				16854D1C219DB01A0078619B /* Property.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -90,11 +99,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		16891E392197125600C11030 /* New Group */ = {
+		16891E392197125600C11030 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
+				16854D16219DAFB60078619B /* Record.swift */,
+				16854D18219DAFBE0078619B /* Block.swift */,
+				16854D1A219DAFCC0078619B /* DynamicHash.swift */,
 			);
-			path = "New Group";
+			path = Structures;
 			sourceTree = "<group>";
 		};
 		16891E3A2197127A00C11030 /* Initial */ = {
@@ -187,8 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16854D1D219DB01A0078619B /* Property.swift in Sources */,
 				16891E272197122800C11030 /* TestController.swift in Sources */,
+				16854D19219DAFBE0078619B /* Block.swift in Sources */,
+				16854D1B219DAFCC0078619B /* DynamicHash.swift in Sources */,
 				16891E252197122800C11030 /* AppDelegate.swift in Sources */,
+				16854D17219DAFB60078619B /* Record.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
