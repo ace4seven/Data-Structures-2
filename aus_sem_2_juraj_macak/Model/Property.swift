@@ -24,23 +24,29 @@ class Property {
     
 }
 
-extension Property: Record {
-    
-    func getHash() {
-        
-    }
-    
-    func toByteArray() {
-        
-    }
-    
-    func fromByteArray() {
-        
-    }
-    
-    func getSize() {
-        
-    }
-    
-    
-}
+//extension Property: Record {
+//    
+//    static func == (lhs: Property, rhs: Property) -> Bool {
+//        return lhs.propertyID == rhs.propertyID
+//    }
+//    
+//    
+//    func getHash() -> BitSet {
+//        return BitSet(size: 10)
+//    }
+//    
+//    
+//    func toByteArray() {
+//        
+//    }
+//    
+//    func fromByteArray() {
+//        
+//    }
+//    
+//    func getSize() -> Int {
+//        return 0
+//    }
+//    
+//    
+//}
