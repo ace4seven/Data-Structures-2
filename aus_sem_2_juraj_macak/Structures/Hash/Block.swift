@@ -10,11 +10,8 @@ import Foundation
 
 class Block<T: Record> {
     
-    fileprivate var recordsCount: Int = 0
-    
-//    fileprivate var offset: UInt64 = 0 // BLOCK ADDRESS
+    fileprivate var _recordsCount: Int = 0
     fileprivate var _records: [T] = []
-//    fileprivate let recordSize: Int
     
     var records: [T] {
         get {
@@ -23,18 +20,16 @@ class Block<T: Record> {
     }
     
     init() {
-        self.recordsCount = 0
-//        self.offset = offset
-//        self.recordSize = recordSize
+        self._recordsCount = 0
     }
     
-    init(bytes: [Byte]) {
+    init(bytes: [Byte], for fileType: FileTypeSize) {
         var min = 0
         var max = T.getSize()
         
-        for _ in 0..<C.BLOCK_SIZE {
+        for _ in 0..<fileType.size {
             let recordData = bytes.enumerated().compactMap { ($0 >= min && $0 < max) ? $1 : nil }
-            self.recordsCount += 1
+            self._recordsCount += 1
             let record: T = T.fromByteArray(recordData) as! T
             min += T.getSize()
             max += T.getSize()
@@ -49,18 +44,18 @@ class Block<T: Record> {
 extension Block {
     
     @discardableResult
-    func insert(record: T) -> Bool {
-        if recordsCount <= C.BLOCK_SIZE {
+    func insert(record: T, for fileType: FileTypeSize) -> Bool {
+        if _recordsCount <= fileType.size {
             _records.append(record)
-            recordsCount += 1
+            _recordsCount += 1
             return true
         }
         print("Potrebny preplnujuci blok")
         return false
     }
     
-    static func getSize() -> Int {
-        return C.BLOCK_SIZE * T.getSize()
+    static func getSize(for fileType: FileTypeSize) -> Int {
+        return fileType.size * T.getSize()
     }
     
     func toByteArray() -> [Byte] {

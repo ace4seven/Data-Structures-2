@@ -12,15 +12,27 @@ class TestController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
 //        test()
 //        testBinaryFile()
-        testBlock()
+//        testBlock()
+        testBitset()
     }
     
 }
 
 extension TestController {
+    
+    func testBitset() {
+        let numb = 10
+        let numb2 = 10
+        
+        var test = "lorem ipsum"
+        var test2 = "lorem ipsum"
+        
+        
+        
+    }
     
     func test() {
         let str = "Lorem ipsum dolor"
@@ -53,19 +65,19 @@ extension TestController {
 //        UnorderedFile.shared.fileHandle.seekToEndOfFile()
 //        UnorderedFile.shared.fileHandle.write(Data(bytes: tet2File.toByteArray()))
 
-        UnorderedFile.shared.fileHandle.seek(toFileOffset: 0)
-        let data: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
-        let test = TestModel(data: data)
-
-        UnorderedFile.shared.fileHandle.seek(toFileOffset: 40)
-        let data2: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
-        let test2 = TestModel(data: data2)
-
-        print(test.id)
-        print(test.desc)
-
-        print(test2.id)
-        print(test2.desc)
+//        UnorderedFile.shared.fileHandle.seek(toFileOffset: 0)
+//        let data: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
+//        let test = TestModel(data: data)
+//
+//        UnorderedFile.shared.fileHandle.seek(toFileOffset: 40)
+//        let data2: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
+//        let test2 = TestModel(data: data2)
+//
+//        print(test.id)
+//        print(test.desc)
+//
+//        print(test2.id)
+//        print(test2.desc)
     }
     
     func testBlock() {
@@ -99,21 +111,21 @@ extension TestController {
 
 //        UnorderedFile.shared.insert(block: block2, address: UInt64(Block<TestModel>.getSize()))
         
-        let block = UnorderedFile.shared.getBlock(address: 0, length: C.BLOCK_SIZE * TestModel.getSize())
-
-        for record in block.records {
-            print("Prvy block parametre")
-            print(record.id)
-            print(record.desc)
-        }
-        
-        let block2 = UnorderedFile.shared.getBlock(address: 80, length: C.BLOCK_SIZE * TestModel.getSize())
-        
-        for record in block2.records {
-            print("Druhy block parametre")
-            print(record.id)
-            print(record.desc)
-        }
+//        let block = UnorderedFile.shared.getBlock(address: 0, length: C.BLOCK_SIZE * TestModel.getSize())
+//
+//        for record in block.records {
+//            print("Prvy block parametre")
+//            print(record.id)
+//            print(record.desc)
+//        }
+//
+//        let block2 = UnorderedFile.shared.getBlock(address: 80, length: C.BLOCK_SIZE * TestModel.getSize())
+//
+//        for record in block2.records {
+//            print("Druhy block parametre")
+//            print(record.id)
+//            print(record.desc)
+//        }
         
     }
     

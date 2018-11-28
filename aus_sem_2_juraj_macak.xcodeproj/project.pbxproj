@@ -132,7 +132,6 @@
 		16891E392197125600C11030 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				16A2299D21AB360F00026C54 /* Trie */,
 				16A2299C21AB35EF00026C54 /* Hash */,
 			);
 			path = Structures;
@@ -159,9 +158,10 @@
 		16A2299C21AB35EF00026C54 /* Hash */ = {
 			isa = PBXGroup;
 			children = (
+				16A2299D21AB360F00026C54 /* Trie */,
+				16854D1A219DAFCC0078619B /* DynamicHash.swift */,
 				16854D16219DAFB60078619B /* Record.swift */,
 				16854D18219DAFBE0078619B /* Block.swift */,
-				16854D1A219DAFCC0078619B /* DynamicHash.swift */,
 			);
 			path = Hash;
 			sourceTree = "<group>";

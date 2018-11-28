@@ -10,10 +10,10 @@ import Foundation
 
 class TestModel {
     
-    let id: UInt32
+    let id: Int
     let desc: String
     
-    init(id: UInt32, desc: String) {
+    init(id: Int, desc: String) {
         self.id = id
         self.desc = desc
     }
@@ -21,7 +21,7 @@ class TestModel {
     init(data: [Byte]) {
         let idData = data.enumerated().compactMap { $0 < 4 ? $1 : nil }
         let descData = data.enumerated().compactMap { $0 >= 4 ? $1 : nil }
-        self.id = ByteConverter.fromByteArray(idData, UInt32.self)
+        self.id = ByteConverter.fromByteArray(idData, Int.self)
         self.desc = ByteConverter.fromByteToString(descData)
     }
     
@@ -29,15 +29,12 @@ class TestModel {
 
 extension TestModel: Record {
 
-    func getHash() -> BitSet {
-        var bitSet = BitSet(size: C.MAX_BITH_SIZE)
-        let idHash = id.hashValue
-        let descHash = desc.hashValue
+    func getHash() -> [UInt8] {
+        let idHash = id.staticHash
+        let descHash = desc.staticHash
         
-        bitSet.set(idHash)
-        bitSet.set(descHash)
-        
-        return bitSet
+        let sum = idHash + descHash
+        return sum.bitSet
     }
     
     func toByteArray() -> [Byte] {

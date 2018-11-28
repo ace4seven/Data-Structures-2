@@ -12,8 +12,7 @@ import Foundation
 
 protocol Record: Equatable {
     
-    func getHash() -> BitSet
-    
+    func getHash() -> [Byte]
     func toByteArray() -> [Byte]
     
     static func fromByteArray(_ bytes: [Byte]) -> Any

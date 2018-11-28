@@ -8,9 +8,21 @@
 
 import Foundation
 
-class UnorderedFile {
+typealias File = UnorderedFile
+
+class UnFileManager<T: Record> {
     
-    public static let shared = UnorderedFile()
+    var mainFile: UnorderedFile<T>
+    var supportingFile: UnorderedFile<T>
+    
+    init(mainFileName: String, supportingFileName: String) {
+        self.mainFile = UnorderedFile(fileName: mainFileName)
+        self.supportingFile = UnorderedFile(fileName: supportingFileName)
+    }
+    
+}
+
+class UnorderedFile<T: Record> {
     
     fileprivate var fileManager = FileManager.default
     fileprivate var _fileHandle: FileHandle?
@@ -21,8 +33,8 @@ class UnorderedFile {
         }
     }
     
-    private init() {
-        let filePath = C.DOC_PATH + "/" + C.FILE_NAME + ".bin"
+    init(fileName: String) {
+        let filePath = C.DOC_PATH + "/" + fileName + ".bin"
         
         print(filePath)
         
@@ -39,25 +51,15 @@ class UnorderedFile {
 
 extension UnorderedFile {
     
-    func insert(block: Block<TestModel>, address: UInt64) {
+    func insert(block: Block<T>, address: UInt64) {
         fileHandle.seek(toFileOffset: address)
         fileHandle.write(Data(bytes: block.toByteArray()))
     }
     
-    func getBlock(address: UInt64, length: Int) -> Block<TestModel> {
+    func getBlock(address: UInt64, for fileType: FileTypeSize) -> Block<T> {
         fileHandle.seek(toFileOffset: address)
-        let data: [Byte] = [Byte](fileHandle.readData(ofLength: length))
-        return Block(bytes: data)
+        let data: [Byte] = [Byte](fileHandle.readData(ofLength: fileType.size * T.getSize()))
+        return Block(bytes: data, for: fileType)
     }
-    
-}
-
-// MARK: - Fileprivates
-
-extension UnorderedFile {
-    
-//    fileprivate func createNewFile(filePath: String) {
-//
-//    }
     
 }
