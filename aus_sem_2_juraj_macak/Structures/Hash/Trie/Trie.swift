@@ -19,8 +19,8 @@ class Trie {
 
 extension Trie {
     
-    func addExternalRoot() {
-        self.root = ExternalNode(blockAddress: 0)
+    func addExternalRoot(offset: UInt64) {
+        self.root = ExternalNode(offset: offset)
     }
     
     func find(bitset: [Byte]) -> ExternalNode {
@@ -32,8 +32,49 @@ extension Trie {
             bitIndex += 1
         }
         
-        return tempNode as! ExternalNode
+        let findedNode = tempNode as! ExternalNode
+        
+//        if findedNode.address == nil {
+//            findedNode.address = maxAddressOffset + 1
+//            maxAddressOffset += 1
+//        }
+        
+        return findedNode
     }
+    
+    func increaseTreeNodes(ex1: ExternalNode, ex2: ExternalNode, extCurrent: ExternalNode) {
+        
+        if let parrent = extCurrent.parrent as? InternalNode {
+            
+            let internalNode = InternalNode()
+    
+            
+            ex1.parrent = internalNode
+            ex2.parrent = internalNode
+            
+            if let leftExtNode = parrent.leftChild as? ExternalNode, leftExtNode.offset == extCurrent.offset {
+                parrent.leftChild = internalNode
+                internalNode.parrent = parrent
+            } else {
+                parrent.rightChild = internalNode
+                internalNode.parrent = parrent
+            }
+            
+            // NODES are still in nill offset addres, which will configure later.
+            
+            internalNode.leftChild = ex1
+            internalNode.rightChild = ex2
+        } else {
+            self.root = InternalNode()
+            if let node = self.root as? InternalNode {
+                node.leftChild = ex1
+                node.rightChild = ex2
+                ex1.parrent = self.root
+                ex2.parrent = self.root
+            }
+        }
+    }
+
     
 }
 
@@ -45,4 +86,5 @@ extension Trie: CustomStringConvertible {
         guard let root = root else { return "empty tree" }
         return String(describing: root)
     }
+    
 }

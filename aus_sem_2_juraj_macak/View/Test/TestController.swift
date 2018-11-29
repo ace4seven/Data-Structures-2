@@ -16,45 +16,68 @@ class TestController: UIViewController {
 //        test()
 //        testBinaryFile()
 //        testBlock()
-        testBitset()
+//        testBitset()
+        
+        testDynamicHash()
     }
     
 }
 
 extension TestController {
     
-    func testBitset() {
-        let numb = 10
-        let numb2 = 10
-        
-        var test = "lorem ipsum"
-        var test2 = "lorem ipsum"
+    func testDynamicHash() {
+        let dynamicHash = DynamicHash(deep: 10, mainFileSize: 4, supportFileSize: 2, fileManager: UnFileManager<TestModel>(mainFileName: "mainFile", supportingFileName: "supportFile"))
         
         
+        for i in 1..<100000 {
+            if !dynamicHash.insert(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) {
+                print("Nemohol som vlozit")
+            }
+        }
+        
+        
+        for i in 1..<100000 {
+            if (dynamicHash.find(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) == nil) {
+                print("Nenaslo: \(i)")
+            }
+        }
+        
+        print("Hotovo")
         
     }
     
-    func test() {
-        let str = "Lorem ipsum dolor"
-        var buf = ByteConverter.toByteArray(str)
-        
-        print(buf)
-        
-        let numb: UInt32 = 13
-
-        let intBuf = ByteConverter.toByteArray(numb)
-
-        buf.append(contentsOf: intBuf)
-
-        print(buf)
-
-        print(str.count)
-
-        let number = buf.enumerated().compactMap { $0 >= 16 ? $1 : nil }
-        
-        print(ByteConverter.fromByteArray(buf, String.self))
-        print(ByteConverter.fromByteArray(number, Int.self))
-    }
+//    func testBitset() {
+//        let numb = 10
+//        let numb2 = 10
+//
+//        var test = "lorem ipsum"
+//        var test2 = "lorem ipsum"
+//
+//
+//
+//    }
+//
+//    func test() {
+//        let str = "Lorem ipsum dolor"
+//        var buf = ByteConverter.toByteArray(str)
+//
+//        print(buf)
+//
+//        let numb: UInt32 = 13
+//
+//        let intBuf = ByteConverter.toByteArray(numb)
+//
+//        buf.append(contentsOf: intBuf)
+//
+//        print(buf)
+//
+//        print(str.count)
+//
+//        let number = buf.enumerated().compactMap { $0 >= 16 ? $1 : nil }
+//
+//        print(ByteConverter.fromByteArray(buf, String.self))
+//        print(ByteConverter.fromByteArray(number, Int.self))
+//    }
     
     func testBinaryFile() {
 //        let tet1File = TestModel(id: 11, desc: "aaaaaaaaaaaaaaaa")

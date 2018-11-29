@@ -8,19 +8,19 @@
 
 import Foundation
 
-enum FileTypeSize {
-    case main
-    case inc
-    
-    var size: Int {
-        switch self {
-        case .main:
-            return 4
-        case .inc:
-            return 2
-        }
-    }
-}
+//enum FileTypeSize {
+//    case main
+//    case inc
+//
+//    var size: Int {
+//        switch self {
+//        case .main:
+//            return 4
+//        case .inc:
+//            return 2
+//        }
+//    }
+//}
 
 enum C {
     

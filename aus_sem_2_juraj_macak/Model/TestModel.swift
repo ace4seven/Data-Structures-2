@@ -19,8 +19,8 @@ class TestModel {
     }
     
     init(data: [Byte]) {
-        let idData = data.enumerated().compactMap { $0 < 4 ? $1 : nil }
-        let descData = data.enumerated().compactMap { $0 >= 4 ? $1 : nil }
+        let idData = data.enumerated().compactMap { $0 < 8 ? $1 : nil }
+        let descData = data.enumerated().compactMap { $0 >= 8 ? $1 : nil }
         self.id = ByteConverter.fromByteArray(idData, Int.self)
         self.desc = ByteConverter.fromByteToString(descData)
     }
@@ -54,7 +54,7 @@ extension TestModel: Record {
     }
     
     static func getSize() -> Int {
-        return 20 // 16 bytes for string, 4 bytes for ID
+        return 24 // 16 bytes for string, 8 bytes for ID // 1 byte for record count
     }
     
     static func == (lhs: TestModel, rhs: TestModel) -> Bool {

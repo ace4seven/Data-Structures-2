@@ -56,10 +56,11 @@ extension UnorderedFile {
         fileHandle.write(Data(bytes: block.toByteArray()))
     }
     
-    func getBlock(address: UInt64, for fileType: FileTypeSize) -> Block<T> {
-        fileHandle.seek(toFileOffset: address)
-        let data: [Byte] = [Byte](fileHandle.readData(ofLength: fileType.size * T.getSize()))
-        return Block(bytes: data, for: fileType)
+    func getBlock(offset: UInt64, maxRecordsCount: Int) -> Block<T> {
+        let length = Int(maxRecordsCount * T.getSize() + 1)
+        fileHandle.seek(toFileOffset: offset * UInt64(length))
+        let data: [Byte] = [Byte](fileHandle.readData(ofLength: length))
+        return Block(bytes: data, maxRecordsCount: maxRecordsCount, offset: offset)
     }
     
 }
