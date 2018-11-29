@@ -10,11 +10,10 @@ import Foundation
 
 class Block<T: Record> {
     
-    fileprivate var recordsCount: Int = 0
-    
-//    fileprivate var offset: UInt64 = 0 // BLOCK ADDRESS
+    fileprivate var _recordsCount: UInt8 = 0
     fileprivate var _records: [T] = []
-//    fileprivate let recordSize: Int
+    fileprivate let _maxRecordsCount: Int
+    fileprivate var _offset: UInt64?
     
     var records: [T] {
         get {
@@ -22,19 +21,22 @@ class Block<T: Record> {
         }
     }
     
-    init() {
-        self.recordsCount = 0
-//        self.offset = offset
-//        self.recordSize = recordSize
+    init(maxRecordsCount: Int, offset: UInt64? = nil) {
+        self._recordsCount = 0
+        self._maxRecordsCount = maxRecordsCount
+        self._offset = offset
     }
     
-    init(bytes: [Byte]) {
-        var min = 0
-        var max = T.getSize()
+    init(bytes: [Byte], maxRecordsCount: Int, offset: UInt64) {
+        self._maxRecordsCount = maxRecordsCount
+        self._recordsCount = bytes[0]
+        self._offset = offset
         
-        for _ in 0..<C.BLOCK_SIZE {
+        var min = 1
+        var max = T.getSize() + 1
+        
+        for _ in 0..<_recordsCount {
             let recordData = bytes.enumerated().compactMap { ($0 >= min && $0 < max) ? $1 : nil }
-            self.recordsCount += 1
             let record: T = T.fromByteArray(recordData) as! T
             min += T.getSize()
             max += T.getSize()
@@ -50,27 +52,31 @@ extension Block {
     
     @discardableResult
     func insert(record: T) -> Bool {
-        if recordsCount <= C.BLOCK_SIZE {
+        if _recordsCount < _maxRecordsCount {
             _records.append(record)
-            recordsCount += 1
+            _recordsCount += 1
             return true
         }
-        print("Potrebny preplnujuci blok")
         return false
     }
     
-    static func getSize() -> Int {
-        return C.BLOCK_SIZE * T.getSize()
+    func getSize() -> UInt64 {
+        return UInt64(_maxRecordsCount * T.getSize() + 1)
     }
     
     func toByteArray() -> [Byte] {
         var result: [Byte] = []
+        result.append(_recordsCount)
         
         for record in _records {
             result.append(contentsOf: record.toByteArray())
         }
         
         return result
+    }
+    
+    func getOffset() -> UInt64? {
+        return self._offset
     }
     
 }
