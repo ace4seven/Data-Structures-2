@@ -29,6 +29,7 @@ class DynamicHash<T: Record> {
 //    fileprivate var currentMaxAddress: UInt64 = 0
     
     fileprivate var freeOffset: UInt64 = 0
+    fileprivate var freeSupportingOffset: Int64 = 0
 
     
     init(deep: Int, mainFileSize: Int, supportFileSize: Int, fileManager: UnFileManager<T>) {
@@ -93,13 +94,37 @@ extension DynamicHash {
         }
         
         var cycle = true
-        
         while(cycle) {
-            // TODO: Bude nutne asi prerobit na aktualnu hlbku suboru
             if ext.getDeep() >= self.deep {
-                // TODO preplovaci blok
-                print("NEED SUPPORT FILE BLOCK")
                 return false
+                if block?.supportingFileOffset() == -1 {
+                    block?.setSupportingFileOffset(freeSupportingOffset)
+                    blockHelper1 = Block<T>.init(maxRecordsCount: supportFileSize)
+                    blockHelper1?.insert(record: record)
+                    
+                    fm.supportingFile.insert(block: blockHelper1!, address: UInt64(freeSupportingOffset) * blockHelper1!.getSize())
+                    fm.mainFile.insert(block: block!, address: block!.getOffset()! * block!.getSize())
+                    freeSupportingOffset += 1
+                    return true
+                } else {
+                    blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(block!.supportingFileOffset()), maxRecordsCount: supportFileSize)
+                    if blockHelper1!.records.count < supportFileSize {
+                        blockHelper1?.insert(record: record)
+                        fm.supportingFile.insert(block: blockHelper1!, address: UInt64(blockHelper1!.supportingFileOffset()) * blockHelper1!.getSize())
+                        return true
+                    } else {
+                        if blockHelper1?.supportingFileOffset() == -1 {
+                            blockHelper2 = Block<T>.init(maxRecordsCount: supportFileSize)
+                            blockHelper1?.setSupportingFileOffset(freeSupportingOffset)
+                            fm.supportingFile.insert(block: blockHelper2!, address:  UInt64(freeSupportingOffset) * blockHelper2!.getSize())
+                            fm.supportingFile.insert(block: blockHelper1!, address:  UInt64(block!.supportingFileOffset()) * blockHelper1!.getSize())
+                            freeSupportingOffset += 1
+                            return true
+                        } else {
+                            blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(blockHelper1!.supportingFileOffset()), maxRecordsCount: supportFileSize)
+                        }
+                    }
+                }
             } else {
                 
                 blockHelper1 = Block<T>(maxRecordsCount: self.mainFileSize, offset: block?.getOffset())
@@ -174,11 +199,20 @@ extension DynamicHash {
         let ext = trie.find(bitset: record.getHash())
         if let offset = ext.offset {
             block = fm.mainFile.getBlock(offset: offset, maxRecordsCount: mainFileSize)
-            // TODO - Preplnujuci blok
             for item in self.block!.records {
                 if item == record {
                     return item
                 }
+            }
+            
+            while block!.supportingFileOffset() != -1 {
+                blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(block!.supportingFileOffset()), maxRecordsCount: supportFileSize)
+                for item in blockHelper1!.records {
+                    if item == record {
+                        return item
+                    }
+                }
+                block = blockHelper1?.copy()
             }
         }
         
