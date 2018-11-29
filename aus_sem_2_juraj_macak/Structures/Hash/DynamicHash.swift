@@ -57,9 +57,7 @@ extension DynamicHash {
     
     @discardableResult
     func insert(_ record: T) -> Bool {
-        let hash = record.getHash()
-        
-        
+
         if trie.root == nil {
             trie.addExternalRoot(offset: freeOffset)
             freeOffset += 1
@@ -77,7 +75,6 @@ extension DynamicHash {
             
             for item in self.block!.records {
                 if item == record {
-                    // MARK: - Item finded, need some error handling
                     return false
                 }
             }
