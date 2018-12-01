@@ -14,6 +14,7 @@ class Block<T: Record> {
     fileprivate var _records: [T] = []
     fileprivate let _maxRecordsCount: Int
     fileprivate var _offset: UInt64?
+    fileprivate var _supportingFileOffset: Int64 = -1
     
     var records: [T] {
         get {
@@ -29,11 +30,13 @@ class Block<T: Record> {
     
     init(bytes: [Byte], maxRecordsCount: Int, offset: UInt64) {
         self._maxRecordsCount = maxRecordsCount
-        self._recordsCount = bytes[0]
+        
+        self._supportingFileOffset = ByteConverter.fromByteArray(bytes.enumerated().compactMap { ($0 >= 0 && $0 < 8) ? $1 : nil  }, Int64.self)
+        self._recordsCount = bytes[8]
         self._offset = offset
         
-        var min = 1
-        var max = T.getSize() + 1
+        var min = 9
+        var max = T.getSize() + 9
         
         for _ in 0..<_recordsCount {
             let recordData = bytes.enumerated().compactMap { ($0 >= min && $0 < max) ? $1 : nil }
@@ -61,13 +64,13 @@ extension Block {
     }
     
     func getSize() -> UInt64 {
-        return UInt64(_maxRecordsCount * T.getSize() + 1)
+        return UInt64((_maxRecordsCount * T.getSize()) + 9)
     }
     
     func toByteArray() -> [Byte] {
         var result: [Byte] = []
+        result.append(contentsOf: ByteConverter.toByteArray(self._supportingFileOffset))
         result.append(_recordsCount)
-        
         for record in _records {
             result.append(contentsOf: record.toByteArray())
         }
@@ -79,12 +82,20 @@ extension Block {
         return self._offset
     }
     
-}
-
-// MARK: - Fileprivates
-
-extension Block {
+    func supportingFileOffset() -> Int64 {
+        return self._supportingFileOffset
+    }
     
+    func setSupportingFileOffset(_ value: Int64) {
+        self._supportingFileOffset = value
+    }
     
+    func copy() -> Block<T> {
+        let copy = Block<T>.init(maxRecordsCount: self._maxRecordsCount, offset: self.getOffset())
+        copy._records = self.records
+        copy._recordsCount = self._recordsCount
+        copy._supportingFileOffset = self._supportingFileOffset
+        return copy
+    }
     
 }
