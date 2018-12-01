@@ -26,17 +26,17 @@ class TestController: UIViewController {
 extension TestController {
     
     func testDynamicHash() {
-        let dynamicHash = DynamicHash(deep: 80, mainFileSize: 4, supportFileSize: 1, fileManager: UnFileManager<TestModel>(mainFileName: "mainFile", supportingFileName: "supportFile"))
+        let dynamicHash = DynamicHash(deep: 50, mainFileSize: 1, supportFileSize: 1, fileManager: UnFileManager<TestModel>(mainFileName: "mainFile", supportingFileName: "supportFile"))
         
         
-        for i in stride(from: 1, to: 10, by: 1) {
+        for i in stride(from: 1, to: 1000, by: 1) {
             if !dynamicHash.insert(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) {
                 print("Nemohol som vlozit \(i)")
             }
         }
         
         
-        for i in stride(from: 1, to: 10, by: 1) {
+        for i in stride(from: 1, to: 1000, by: 1) {
             if (dynamicHash.find(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) == nil) {
                 print("Nenaslo: \(i)")
             }

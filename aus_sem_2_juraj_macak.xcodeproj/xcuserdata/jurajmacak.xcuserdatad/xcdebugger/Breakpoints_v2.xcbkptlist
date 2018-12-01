@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "aus_sem_2_juraj_macak/Structures/Hash/DynamicHash.swift"
-            timestampString = "565226936.238623"
+            timestampString = "565368020.401009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "insert(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "aus_sem_2_juraj_macak/Model/TestModel.swift"
-            timestampString = "565226946.9533091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "getHash()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

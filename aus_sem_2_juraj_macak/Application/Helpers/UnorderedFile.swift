@@ -57,7 +57,7 @@ extension UnorderedFile {
     }
     
     func getBlock(offset: UInt64, maxRecordsCount: Int) -> Block<T> {
-        let length = Int(maxRecordsCount * T.getSize() + 1)
+        let length = Int(maxRecordsCount * T.getSize() + 9)
         fileHandle.seek(toFileOffset: offset * UInt64(length))
         let data: [Byte] = [Byte](fileHandle.readData(ofLength: length))
         return Block(bytes: data, maxRecordsCount: maxRecordsCount, offset: offset)

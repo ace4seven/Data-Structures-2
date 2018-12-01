@@ -64,7 +64,7 @@ extension Block {
     }
     
     func getSize() -> UInt64 {
-        return UInt64(_maxRecordsCount * T.getSize() + 1 + 8)
+        return UInt64((_maxRecordsCount * T.getSize()) + 9)
     }
     
     func toByteArray() -> [Byte] {
