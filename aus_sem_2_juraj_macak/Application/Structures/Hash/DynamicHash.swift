@@ -15,18 +15,15 @@ class DynamicHash<T: Record> {
     
     fileprivate let fm: UnFileManager<T>
     
-    // BLOCK CACHE
     fileprivate var block: Block<T>?
     fileprivate var blockHelper1: Block<T>?
     fileprivate var blockHelper2: Block<T>?
+    
     fileprivate var mainFileSize: Int
     fileprivate var supportFileSize: Int
     
     fileprivate var maxBlockInMainFile: Int? = nil
     fileprivate var maxBlockInSupportFile: Int? = nil
-    
-//    fileprivate var freeAddress: UInt64? = nil
-//    fileprivate var currentMaxAddress: UInt64 = 0
     
     fileprivate var freeOffset: UInt64 = 0
     fileprivate var freeSupportingOffset: Int64 = 0

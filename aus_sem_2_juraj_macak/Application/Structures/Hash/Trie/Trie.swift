@@ -42,7 +42,6 @@ extension Trie {
             
             let internalNode = InternalNode()
     
-            
             ex1.parrent = internalNode
             ex2.parrent = internalNode
             
@@ -53,8 +52,6 @@ extension Trie {
                 parrent.rightChild = internalNode
                 internalNode.parrent = parrent
             }
-            
-            // NODES are still in nill offset addres, which will configure later.
             
             internalNode.leftChild = ex1
             internalNode.rightChild = ex2
