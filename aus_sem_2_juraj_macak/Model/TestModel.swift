@@ -15,14 +15,14 @@ class TestModel {
     
     init(id: Int, desc: String) {
         self.id = id
-        self.desc = desc
+        self.desc = desc.modifyTo(size: 50, delimeter: ";")
     }
     
     init(data: [Byte]) {
         let idData = data.enumerated().compactMap { $0 < 8 ? $1 : nil }
         let descData = data.enumerated().compactMap { $0 >= 8 ? $1 : nil }
         self.id = ByteConverter.fromByteArray(idData, Int.self)
-        self.desc = ByteConverter.fromByteToString(descData)
+        self.desc = ByteConverter.fromByteToString(descData).cleanDelimeter(delimeter: ";")
     }
     
 }
@@ -49,12 +49,17 @@ extension TestModel: Record {
         return buffer
     }
     
+    func debugPrint() {
+        print("     id:   \(self.id)")
+        print("     desc: \(self.desc)")
+    }
+    
     static func fromByteArray(_ bytes: [Byte]) -> Any {
         return TestModel(data: bytes)
     }
     
     static func getSize() -> Int {
-        return 24 // 16 bytes for string, 8 bytes for ID // 1 byte for record count
+        return 58 // 50 bytes for string, 8 bytes for ID
     }
     
     static func == (lhs: TestModel, rhs: TestModel) -> Bool {

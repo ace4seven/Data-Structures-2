@@ -58,7 +58,7 @@ public class ExternalNode: TrieNode {
     }
     
     func getDeep() -> Int {
-        var index = 1
+        var index = 0
         var temp: TrieNode? = self
         
         while temp?.parrent != nil {

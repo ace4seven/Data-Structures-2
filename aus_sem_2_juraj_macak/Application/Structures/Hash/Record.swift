@@ -17,5 +17,4 @@ protocol Record: Equatable {
     
     static func fromByteArray(_ bytes: [Byte]) -> Any
     static func getSize() -> Int
-    
 }

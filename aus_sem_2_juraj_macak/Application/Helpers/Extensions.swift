@@ -43,6 +43,38 @@ extension Int {
     
 }
 
+extension UInt {
+    
+    var staticHash: UInt {
+        var hash = UInt (5381)
+        let buf = [UInt8](String(self).utf8)
+        
+        for b in buf {
+            hash = 127 * (hash & 0x00ffffffffffffff) + UInt(b)
+        }
+        
+        return hash
+    }
+    
+    var bitSet: [Byte] {
+        var result = [UInt8]()
+        
+        var input  = self
+        while(input > 0) {
+            result.append(UInt8(input % 2))
+            input = input / 2
+        }
+        if result.count < 8 {
+            for _ in result.count..<8 {
+                result.append(0)
+            }
+        }
+        
+        return result
+    }
+    
+}
+
 extension String {
     
     var staticHash: Int {
@@ -53,6 +85,54 @@ extension String {
         }
         
         return abs(hash)
+    }
+    
+    func modifyTo(size: Int, delimeter: Character) -> String {
+        var result = ""
+        for i in 0..<size {
+            if self[i] != "" {
+                result.append(self[i])
+            } else {
+                result.append(delimeter)
+            }
+        }
+        
+        return result
+    }
+    
+    func cleanDelimeter(delimeter: Character) -> String {
+        var result = ""
+        for char in self {
+            if char != delimeter {
+                result.append(char)
+            }
+        }
+        
+        return result
+    }
+    
+    var length: Int {
+        return count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+    
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+    
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
     }
     
 }

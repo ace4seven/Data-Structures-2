@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1612016F21A9977600EAAF0B /* ByteConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612016E21A9977600EAAF0B /* ByteConverter.swift */; };
 		1666E4C021A82A6700D6496B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1666E4BF21A82A6700D6496B /* Constants.swift */; };
+		167067DD21B3429A00D0F1A3 /* PropertyByRegionAndNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167067DC21B3429A00D0F1A3 /* PropertyByRegionAndNumber.swift */; };
+		167067DF21B342B300D0F1A3 /* PropertyByUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167067DE21B342B300D0F1A3 /* PropertyByUnique.swift */; };
+		167067E121B347DA00D0F1A3 /* CoreHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167067E021B347DA00D0F1A3 /* CoreHash.swift */; };
 		16854D17219DAFB60078619B /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D16219DAFB60078619B /* Record.swift */; };
 		16854D19219DAFBE0078619B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D18219DAFBE0078619B /* Block.swift */; };
 		16854D1B219DAFCC0078619B /* DynamicHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16854D1A219DAFCC0078619B /* DynamicHash.swift */; };
@@ -30,6 +33,9 @@
 /* Begin PBXFileReference section */
 		1612016E21A9977600EAAF0B /* ByteConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteConverter.swift; sourceTree = "<group>"; };
 		1666E4BF21A82A6700D6496B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		167067DC21B3429A00D0F1A3 /* PropertyByRegionAndNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyByRegionAndNumber.swift; sourceTree = "<group>"; };
+		167067DE21B342B300D0F1A3 /* PropertyByUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyByUnique.swift; sourceTree = "<group>"; };
+		167067E021B347DA00D0F1A3 /* CoreHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreHash.swift; sourceTree = "<group>"; };
 		16854D16219DAFB60078619B /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		16854D18219DAFBE0078619B /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		16854D1A219DAFCC0078619B /* DynamicHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHash.swift; sourceTree = "<group>"; };
@@ -92,10 +98,9 @@
 		16891E232197122800C11030 /* aus_sem_2_juraj_macak */ = {
 			isa = PBXGroup;
 			children = (
-				16891E392197125600C11030 /* Structures */,
-				16891E382197124600C11030 /* View */,
-				16891E372197124100C11030 /* Model */,
 				16891E362197123A00C11030 /* Application */,
+				16891E372197124100C11030 /* Model */,
+				16891E382197124600C11030 /* View */,
 			);
 			path = aus_sem_2_juraj_macak;
 			sourceTree = "<group>";
@@ -103,10 +108,11 @@
 		16891E362197123A00C11030 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				16891E392197125600C11030 /* Structures */,
 				1666E4BE21A82A4E00D6496B /* Helpers */,
-				16891E2B2197122900C11030 /* Assets.xcassets */,
 				16891E302197122900C11030 /* Info.plist */,
 				16891E242197122800C11030 /* AppDelegate.swift */,
+				167067E021B347DA00D0F1A3 /* CoreHash.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -114,8 +120,10 @@
 		16891E372197124100C11030 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				16854D1C219DB01A0078619B /* Property.swift */,
 				16A949A921A8481000349BBA /* TestModel.swift */,
+				16854D1C219DB01A0078619B /* Property.swift */,
+				167067DC21B3429A00D0F1A3 /* PropertyByRegionAndNumber.swift */,
+				167067DE21B342B300D0F1A3 /* PropertyByUnique.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 			children = (
 				16891E3B219712D300C11030 /* Test */,
 				16891E3A2197127A00C11030 /* Initial */,
+				16891E2B2197122900C11030 /* Assets.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,13 +262,16 @@
 				16A229A121AB362300026C54 /* Trie.swift in Sources */,
 				16A949AA21A8481000349BBA /* TestModel.swift in Sources */,
 				16854D19219DAFBE0078619B /* Block.swift in Sources */,
+				167067E121B347DA00D0F1A3 /* CoreHash.swift in Sources */,
 				16854D1B219DAFCC0078619B /* DynamicHash.swift in Sources */,
 				1612016F21A9977600EAAF0B /* ByteConverter.swift in Sources */,
+				167067DF21B342B300D0F1A3 /* PropertyByUnique.swift in Sources */,
 				16891E252197122800C11030 /* AppDelegate.swift in Sources */,
 				16854D17219DAFB60078619B /* Record.swift in Sources */,
 				16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */,
 				16A949A821A847EC00349BBA /* UnorderedFile.swift in Sources */,
 				16A2299F21AB361D00026C54 /* TrieNode.swift in Sources */,
+				167067DD21B3429A00D0F1A3 /* PropertyByRegionAndNumber.swift in Sources */,
 				1666E4C021A82A6700D6496B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
