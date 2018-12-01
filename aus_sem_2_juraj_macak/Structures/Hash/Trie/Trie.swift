@@ -33,12 +33,6 @@ extension Trie {
         }
         
         let findedNode = tempNode as! ExternalNode
-        
-//        if findedNode.address == nil {
-//            findedNode.address = maxAddressOffset + 1
-//            maxAddressOffset += 1
-//        }
-        
         return findedNode
     }
     
@@ -75,16 +69,5 @@ extension Trie {
         }
     }
 
-    
-}
-
-// MARK: - Debug
-
-extension Trie: CustomStringConvertible {
-    
-    public var description: String {
-        guard let root = root else { return "empty tree" }
-        return String(describing: root)
-    }
     
 }

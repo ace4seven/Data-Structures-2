@@ -56,6 +56,18 @@ class DynamicHash<T: Record> {
 
 extension DynamicHash {
     
+    func traverseMainFile(completion: (Block<T>) -> ()) {
+        for i in 0..<freeOffset {
+            completion(fm.mainFile.getBlock(offset: i, maxRecordsCount: mainFileSize))
+        }
+    }
+    
+    func traverseSupportFile(completion: (Block<T>) -> ()) {
+        for i in 0..<freeSupportingOffset {
+            completion(fm.supportingFile.getBlock(offset: UInt64(i), maxRecordsCount: supportFileSize))
+        }
+    }
+    
     @discardableResult
     func insert(_ record: T) -> Bool {
 
@@ -72,8 +84,6 @@ extension DynamicHash {
         
         if let offset = ext.offset {
             block = fm.mainFile.getBlock(offset: offset, maxRecordsCount: mainFileSize)
-            // TODO - Preplnujuci blok
-            
             for item in self.block!.records {
                 if item == record {
                     return false
@@ -96,37 +106,8 @@ extension DynamicHash {
         var cycle = true
         while(cycle) {
             if ext.getDeep() >= self.deep {
-                return false
-                if block?.supportingFileOffset() == -1 {
-                    block?.setSupportingFileOffset(freeSupportingOffset)
-                    blockHelper1 = Block<T>.init(maxRecordsCount: supportFileSize)
-                    blockHelper1?.insert(record: record)
-                    
-                    fm.supportingFile.insert(block: blockHelper1!, address: UInt64(freeSupportingOffset) * blockHelper1!.getSize())
-                    fm.mainFile.insert(block: block!, address: block!.getOffset()! * block!.getSize())
-                    freeSupportingOffset += 1
-                    return true
-                } else {
-                    blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(block!.supportingFileOffset()), maxRecordsCount: supportFileSize)
-                    if blockHelper1!.records.count < supportFileSize {
-                        blockHelper1?.insert(record: record)
-                        fm.supportingFile.insert(block: blockHelper1!, address: UInt64(blockHelper1!.supportingFileOffset()) * blockHelper1!.getSize())
-                        return true
-                    } else {
-                        if blockHelper1?.supportingFileOffset() == -1 {
-                            blockHelper2 = Block<T>.init(maxRecordsCount: supportFileSize)
-                            blockHelper1?.setSupportingFileOffset(freeSupportingOffset)
-                            fm.supportingFile.insert(block: blockHelper2!, address:  UInt64(freeSupportingOffset) * blockHelper2!.getSize())
-                            fm.supportingFile.insert(block: blockHelper1!, address:  UInt64(block!.supportingFileOffset()) * blockHelper1!.getSize())
-                            freeSupportingOffset += 1
-                            return true
-                        } else {
-                            blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(blockHelper1!.supportingFileOffset()), maxRecordsCount: supportFileSize)
-                        }
-                    }
-                }
+                return addIntoSupportingFile(record: record)
             } else {
-                
                 blockHelper1 = Block<T>(maxRecordsCount: self.mainFileSize, offset: block?.getOffset())
                 blockHelper2 = Block<T>(maxRecordsCount: self.mainFileSize, offset: freeOffset)
                 
@@ -225,5 +206,58 @@ extension DynamicHash {
 
 extension DynamicHash {
     
+    fileprivate func addIntoSupportingFile(record: T) -> Bool {
+        var adding = true
+        while adding {
+            if block?.supportingFileOffset() == -1 {
+                
+                block?.setSupportingFileOffset(freeSupportingOffset)
+                
+                blockHelper1 = Block<T>.init(maxRecordsCount: supportFileSize)
+                blockHelper1?.insert(record: record)
+                
+                fm.supportingFile.insert(block: blockHelper1!, address: UInt64(freeSupportingOffset) * blockHelper1!.getSize())
+                
+                fm.mainFile.insert(block: block!, address: block!.getOffset()! * block!.getSize())
+                print("ℹ️ Pridavam do preplnujuceho suboru na adrese: \(UInt64(freeSupportingOffset) * blockHelper1!.getSize())")
+                
+                freeSupportingOffset += 1
+                return true
+            } else {
+                blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(block!.supportingFileOffset()), maxRecordsCount: supportFileSize)
+                
+                for rec in blockHelper1!.records {
+                    if rec == record {
+                        return false
+                    }
+                }
+                
+                block?.setSupportingFileOffset(blockHelper1!.supportingFileOffset())
+                
+                if blockHelper1!.records.count < supportFileSize {
+                    blockHelper1?.insert(record: record)
+                    fm.supportingFile.insert(block: blockHelper1!, address: blockHelper1!.getOffset()! * blockHelper1!.getSize())
+                    print("ℹ️ Pridavam do preplnujuceho suboru na adrese: \(blockHelper1!.getOffset()! * blockHelper1!.getSize())")
+                    return true
+                } else {
+                    if blockHelper1?.supportingFileOffset() == -1 {
+                        blockHelper2 = Block<T>.init(maxRecordsCount: supportFileSize)
+                        blockHelper2?.insert(record: record)
+                        blockHelper1?.setSupportingFileOffset(freeSupportingOffset)
+                        fm.supportingFile.insert(block: blockHelper2!, address:  UInt64(freeSupportingOffset) * blockHelper2!.getSize())
+                        fm.supportingFile.insert(block: blockHelper1!, address:  UInt64(blockHelper1!.getOffset()!) * blockHelper1!.getSize())
+                        print("ℹ️ Pridavam do preplnujuceho suboru na adrese: \(UInt64(freeSupportingOffset) * blockHelper2!.getSize())")
+                        freeSupportingOffset += 1
+                        return true
+                    } else {
+                        blockHelper1 = fm.supportingFile.getBlock(offset: UInt64(blockHelper1!.supportingFileOffset()), maxRecordsCount: supportFileSize)
+                        adding = true
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
     
 }

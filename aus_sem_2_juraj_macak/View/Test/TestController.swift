@@ -8,147 +8,139 @@
 
 import UIKit
 
+enum DuplicityChance {
+    case none
+    case weak
+    case middle
+    case strong
+    
+    var value: Int {
+        switch self {
+        case .none:
+            return 0
+        case .weak:
+            return 1
+        case .middle:
+            return 20
+        case .strong:
+            return 40
+        }
+    }
+}
+
 class TestController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        test()
-//        testBinaryFile()
-//        testBlock()
-//        testBitset()
         
-        testDynamicHash()
+        dynamicTest(numbOfRecords: 1000, deep: 5, mainFileSize: 3, supportFileSize: 2, duplicityChance: .middle)
+        
     }
     
 }
 
 extension TestController {
     
-    func testDynamicHash() {
-        let dynamicHash = DynamicHash(deep: 50, mainFileSize: 1, supportFileSize: 1, fileManager: UnFileManager<TestModel>(mainFileName: "mainFile", supportingFileName: "supportFile"))
+    func dynamicTest(numbOfRecords: Int, deep: Int, mainFileSize: Int, supportFileSize: Int, duplicityChance: DuplicityChance) {
+         let dynamicHash = DynamicHash(deep: deep, mainFileSize: mainFileSize, supportFileSize: supportFileSize, fileManager: UnFileManager<TestModel>(mainFileName: "main", supportingFileName: "support"))
         
+        var addedIndexes = [Int]()
+        var addedIntoFile = 0
         
-        for i in stride(from: 1, to: 1000, by: 1) {
-            if !dynamicHash.insert(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) {
-                print("Nemohol som vlozit \(i)")
+        print()
+        print("------------------------------------")
+        print()
+        print("ℹ️ PRIDAVANIE ZAZNAMOV ... ℹ️")
+        print()
+        print("------------------------------------")
+        print()
+        
+        for _ in stride(from: 1, to: numbOfRecords + 1, by: 1) {
+            var index = Int.random(in: 1...1000000)
+            
+            while !dynamicHash.insert(TestModel(id: index, desc: "aaaaaaaaaaaaaaaa")) {
+                index = Int.random(in: 1...1000000)
+            }
+            
+            addedIntoFile += 1
+            addedIndexes.append(index)
+            
+            if Int.random(in: 0...100) < duplicityChance.value && addedIndexes.count > 0 {
+                if !dynamicHash.insert(TestModel(id: addedIndexes[Int.random(in: 0..<addedIndexes.count)], desc: "aaaaaaaaaaaaaaaa")) {
+                    print("⚠️  \(index) - DUPLICITY not added")
+                } else {
+                    addedIntoFile += 1
+                    print("☠️ Bola pridana duplicita")
+                    return
+                }
             }
         }
         
+        print()
+        print("------------------------------------")
+        print()
+        print("ℹ️ KONTROLA ZAZNAMOV ... ℹ️")
+        print()
+        print("------------------------------------")
+        print()
         
-        for i in stride(from: 1, to: 1000, by: 1) {
-            if (dynamicHash.find(TestModel(id: i, desc: "aaaaaaaaaaaaaaaa")) == nil) {
-                print("Nenaslo: \(i)")
+        for index in addedIndexes {
+            let record = dynamicHash.find(TestModel(id: index, desc: "aaaaaaaaaaaaaaaa"))
+            if record == nil {
+                print("☠️ \(index) sa nepodarilo najst")
+                return
+            } else {
+                print("✅ Záznam s kľúčom: \(record!.id) sa nasiel")
             }
         }
         
-        print("Hotovo")
+        print()
+        print("----------------------------------------------------")
+        print()
+        print("Pridanych indexov: \(addedIndexes.count)")
+        print("Pridanych zaznamov: \(addedIntoFile)")
         
-    }
-    
-//    func testBitset() {
-//        let numb = 10
-//        let numb2 = 10
-//
-//        var test = "lorem ipsum"
-//        var test2 = "lorem ipsum"
-//
-//
-//
-//    }
-//
-//    func test() {
-//        let str = "Lorem ipsum dolor"
-//        var buf = ByteConverter.toByteArray(str)
-//
-//        print(buf)
-//
-//        let numb: UInt32 = 13
-//
-//        let intBuf = ByteConverter.toByteArray(numb)
-//
-//        buf.append(contentsOf: intBuf)
-//
-//        print(buf)
-//
-//        print(str.count)
-//
-//        let number = buf.enumerated().compactMap { $0 >= 16 ? $1 : nil }
-//
-//        print(ByteConverter.fromByteArray(buf, String.self))
-//        print(ByteConverter.fromByteArray(number, Int.self))
-//    }
-    
-    func testBinaryFile() {
-//        let tet1File = TestModel(id: 11, desc: "aaaaaaaaaaaaaaaa")
-//        let tet2File = TestModel(id: 14, desc: "bbbbbbbbbbbbbbbb")
-//
-//        UnorderedFile.shared.fileHandle.seekToEndOfFile()
-//        UnorderedFile.shared.fileHandle.write(Data(bytes: tet1File.toByteArray()))
-//        UnorderedFile.shared.fileHandle.seekToEndOfFile()
-//        UnorderedFile.shared.fileHandle.write(Data(bytes: tet2File.toByteArray()))
-
-//        UnorderedFile.shared.fileHandle.seek(toFileOffset: 0)
-//        let data: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
-//        let test = TestModel(data: data)
-//
-//        UnorderedFile.shared.fileHandle.seek(toFileOffset: 40)
-//        let data2: [Byte] = [Byte](UnorderedFile.shared.fileHandle.readData(ofLength: 20))
-//        let test2 = TestModel(data: data2)
-//
-//        print(test.id)
-//        print(test.desc)
-//
-//        print(test2.id)
-//        print(test2.desc)
-    }
-    
-    func testBlock() {
-//        let block1 = Block<TestModel>()
-//
-//        block1.insert(record: TestModel(id: 33, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 34, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 35, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 36, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//        block1.insert(record: TestModel(id: 37, desc: "aaaaaaaaaaaaaaaa"))
-//
-//        UnorderedFile.shared.insert(block: block1, address: 0)
-//
-//        let block2 = Block<TestModel>()
-//
-//        block2.insert(record: TestModel(id: 33, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 34, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 35, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 36, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-//        block2.insert(record: TestModel(id: 37, desc: "bbbbbbbbbbbbbbbb"))
-
-//        UnorderedFile.shared.insert(block: block2, address: UInt64(Block<TestModel>.getSize()))
+        print()
         
-//        let block = UnorderedFile.shared.getBlock(address: 0, length: C.BLOCK_SIZE * TestModel.getSize())
-//
-//        for record in block.records {
-//            print("Prvy block parametre")
-//            print(record.id)
-//            print(record.desc)
-//        }
-//
-//        let block2 = UnorderedFile.shared.getBlock(address: 80, length: C.BLOCK_SIZE * TestModel.getSize())
-//
-//        for record in block2.records {
-//            print("Druhy block parametre")
-//            print(record.id)
-//            print(record.desc)
-//        }
+        var keysFromFile = [Int]()
+        print("----------------------------------------------------")
+        dynamicHash.traverseMainFile() { block in
+            print("👌 HLAVNY BLOK na indexe: \(block.getOffset()!)")
+            for item in block.records {
+                print("     Záznam s klucom: \(item.id)")
+                keysFromFile.append(item.id)
+            }
+            print("----------------------------------------------------")
+        }
+        
+        print()
+        
+        print("----------------------------------------------------")
+        dynamicHash.traverseSupportFile() { block in
+            print("😅 PODPORNY BLOK na indexe: \(block.getOffset()!)")
+            for item in block.records {
+                print("     Záznam s klucom: \(item.id)")
+                keysFromFile.append(item.id)
+            }
+            print("----------------------------------------------------")
+        }
+        
+        print()
+    
+        print("----------------------------------------------------")
+        print()
+        if addedIndexes.count != addedIntoFile {
+            print("⚠️ CHYBA, boli pridane duplicity suborov")
+        } else {
+            if keysFromFile.count == addedIndexes.count {
+                print("✅ Testy v poriadku")
+            } else {
+                print("☠️ TESTY chybne")
+            }
+        }
+        print()
+        print("----------------------------------------------------")
+        
         
     }
     
