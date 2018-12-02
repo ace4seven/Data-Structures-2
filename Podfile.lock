@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.3)
+  - GoodSwift (0.9.0):
+    - Alamofire (~> 4.5)
+    - Unbox (~> 2.5)
+  - Unbox (2.5.0)
+
+DEPENDENCIES:
+  - GoodSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - GoodSwift
+    - Unbox
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  GoodSwift: 70403ef48d8d040644f9ee3008c3038b30bc1b4e
+  Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
+
+PODFILE CHECKSUM: 6c4578fafe40623b81320c93c8c1c2cdd1c9e812
+
+COCOAPODS: 1.5.3

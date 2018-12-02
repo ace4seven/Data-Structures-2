@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Akcie-->
         <scene sceneID="qHP-Qe-9jp">
             <objects>
                 <viewController id="Zb6-vy-wFI" customClass="ActionsController" customModule="aus_sem_2_juraj_macak" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="PK4-mh-7pC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="2lM-cP-WNa"/>
+                    <tabBarItem key="tabBarItem" title="Akcie" image="action_tab_ico" id="2lM-cP-WNa"/>
                     <navigationItem key="navigationItem" id="UrR-KF-SCX">
                         <barButtonItem key="rightBarButtonItem" image="cog_ico" id="flM-8f-VKN">
                             <connections>
@@ -155,13 +155,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-89-O6m">
-                                                    <rect key="frame" x="305.5" y="11" width="53.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-89-O6m">
+                                                    <rect key="frame" x="316.5" y="11" width="42.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10000" minValue="100" maxValue="100000" translatesAutoresizingMaskIntoConstraints="NO" id="viR-Tz-LmD">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="100" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="viR-Tz-LmD">
                                                     <rect key="frame" x="13" y="52" width="349" height="31"/>
                                                     <color key="tintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <connections>
@@ -268,6 +268,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="action_tab_ico" width="30" height="25"/>
         <image name="cog_ico" width="25" height="25"/>
     </resources>
 </document>

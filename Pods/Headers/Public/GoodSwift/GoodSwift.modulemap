@@ -1,0 +1,6 @@
+module GoodSwift {
+  umbrella header "GoodSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import GoodSwift
 
 // MARK: - Variables
 
@@ -33,6 +34,9 @@ extension SettingsController {
         
         tableView.tableHeaderView = UIView(frame: .zero)
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.contentInset.top = 20
+        
         hideKeyboardWhenTappedAround()
         
         title = "Nastavenie"

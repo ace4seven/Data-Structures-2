@@ -157,13 +157,3 @@ extension UIViewController {
     }
     
 }
-
-extension DispatchQueue {
-
-    public func asyncAfter(seconds: TimeInterval, handler: @escaping () -> Void) {
-        let deadline = DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(Double(seconds * 1000)))
-        asyncAfter(deadline: deadline, execute: handler)
-    }
-    
-}
-

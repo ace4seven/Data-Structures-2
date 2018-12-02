@@ -20,11 +20,11 @@ class CoreHash {
             self.config = Config()
         }
         
-        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique_bin", supportingFileName: "properties_unique_sp_bin"))
-        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg_bin", supportingFileName: "properties_reg_sp_bin"))
+        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique", supportingFileName: "properties_unique_sp"))
+        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg", supportingFileName: "properties_reg_sp"))
     }
 
-    fileprivate let unOrderedFile = UnorderedFile<Property>(fileName: "properties_bin")
+    fileprivate let unOrderedFile = UnorderedFile<Property>(fileName: "properties")
     fileprivate var dynamicHashUnique: DynamicHash<PropertyByUnique>
     fileprivate var dynamicHashRnamePId: DynamicHash<PropertyByRegionAndNumber>
     fileprivate var freeIndex: UInt = 0
@@ -37,6 +37,17 @@ class CoreHash {
 // MARK: - PUBLIC
 
 extension CoreHash {
+    
+    func getPropertiesFromFile() -> [Block<Property>] {
+        var result: [Block<Property>] = []
+        
+        for i in 0..<freeIndex {
+            let block = unOrderedFile.getBlock(offset: UInt64(i), maxRecordsCount: config?.mainFileSize ?? 4)
+            result.append(block)
+        }
+        
+        return result
+    }
     
     func changeConfig(mainFileSize: Int, supportFileSize: Int, deep: Int) {
         Config.saveNewConfig(mainFileSize: mainFileSize, supportFileSize: supportFileSize, deep: deep)
@@ -56,16 +67,18 @@ extension CoreHash {
         
         if dynamicHashUnique.find(propertyUnique) == nil && dynamicHashRnamePId.find(propertyRegAndID) == nil {
             if let block = self.block {
-                if block.records.count < self.config?.mainFileSize ?? 4 {
-                    block.insert(record: property)
+                if self.block!.records.count < self.config?.mainFileSize ?? 4 {
+                    self.block!.insert(record: property)
                 } else {
                     freeIndex += 1
                     self.block = Block<Property>.init(maxRecordsCount: self.config?.mainFileSize ?? 4, offset: UInt64(freeIndex))
+                    self.block!.insert(record: property)
                     propertyUnique.blockIndex = freeIndex
                     propertyRegAndID.blockIndex = freeIndex
                 }
             } else {
-                block = Block<Property>.init(maxRecordsCount: self.config?.mainFileSize ?? 4, offset: UInt64(freeIndex))
+                self.block = Block<Property>.init(maxRecordsCount: self.config?.mainFileSize ?? 4, offset: UInt64(freeIndex))
+                self.block?.insert(record: property)
             }
             dynamicHashUnique.insert(propertyUnique)
             dynamicHashRnamePId.insert(propertyRegAndID)
@@ -73,7 +86,7 @@ extension CoreHash {
             return false
         }
         
-        unOrderedFile.insert(block: self.block!, address: UInt64(freeIndex))
+        unOrderedFile.insert(block: self.block!, address: UInt64(freeIndex) * block!.getSize())
         return true
     }
     
