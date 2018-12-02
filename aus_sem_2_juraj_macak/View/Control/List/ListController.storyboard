@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,18 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcH-5M-lRm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcH-5M-lRm">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockCell" rowHeight="58" id="FiI-r9-uYK" customClass="BlockCell" customModule="aus_sem_2_juraj_macak" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FiI-r9-uYK" id="wBF-QJ-Ibs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="binary_ico" translatesAutoresizingMaskIntoConstraints="NO" id="2O6-t0-p5c">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="block_ico" translatesAutoresizingMaskIntoConstraints="NO" id="2O6-t0-p5c">
                                                     <rect key="frame" x="15" y="9" width="40" height="40"/>
                                                     <color key="tintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
@@ -69,7 +69,7 @@
                                         <rect key="frame" x="0.0" y="86" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nE8-mF-LDR" id="B2t-0o-7H3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_ico" translatesAutoresizingMaskIntoConstraints="NO" id="pMx-qg-w4e">
@@ -162,6 +162,145 @@
                                             <outlet property="uniqueIDLabel" destination="Grb-n7-D3A" id="HYv-Pv-Q6a"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PropertyRegionNumberCell" rowHeight="90" id="G6J-90-LVP" customClass="PropertyRegionNumberCell" customModule="aus_sem_2_juraj_macak" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="202" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G6J-90-LVP" id="nri-Nh-RUZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="binary_ico" translatesAutoresizingMaskIntoConstraints="NO" id="luF-87-LDa">
+                                                    <rect key="frame" x="15" y="30" width="30" height="30"/>
+                                                    <color key="tintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Yu6-XM-Lyb"/>
+                                                        <constraint firstAttribute="width" constant="30" id="fjH-v2-f27"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Súpisné číslo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voS-ej-vBC">
+                                                    <rect key="frame" x="55" y="15" width="75" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24234242342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmw-kG-2ni">
+                                                    <rect key="frame" x="140" y="15" width="88" height="15"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Katastrálne územie:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-Bf-Tcc">
+                                                    <rect key="frame" x="55" y="35" width="112" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEs-1a-vmo">
+                                                    <rect key="frame" x="268" y="55" width="78" height="15"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rt4-FY-345">
+                                                    <rect key="frame" x="177" y="35" width="78" height="15"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Index bloku v neutriedenom súbore:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQP-UN-5De">
+                                                    <rect key="frame" x="55" y="55" width="203" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QEs-1a-vmo" firstAttribute="centerY" secondItem="XQP-UN-5De" secondAttribute="centerY" id="0Z1-1k-Hte"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rt4-FY-345" secondAttribute="trailing" constant="15" id="5Xe-r0-ZX5"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gmw-kG-2ni" secondAttribute="trailing" constant="15" id="67u-3m-uFZ"/>
+                                                <constraint firstItem="gmw-kG-2ni" firstAttribute="leading" secondItem="voS-ej-vBC" secondAttribute="trailing" constant="10" id="6Hd-oG-rCT"/>
+                                                <constraint firstItem="luF-87-LDa" firstAttribute="leading" secondItem="nri-Nh-RUZ" secondAttribute="leading" constant="15" id="6hO-0Z-WUc"/>
+                                                <constraint firstItem="Rt4-FY-345" firstAttribute="leading" secondItem="Ob8-Bf-Tcc" secondAttribute="trailing" constant="10" id="9ko-es-q7z"/>
+                                                <constraint firstItem="voS-ej-vBC" firstAttribute="leading" secondItem="luF-87-LDa" secondAttribute="trailing" constant="10" id="D8a-ye-gbX"/>
+                                                <constraint firstItem="voS-ej-vBC" firstAttribute="top" secondItem="nri-Nh-RUZ" secondAttribute="top" constant="15" id="Emi-k7-gXZ"/>
+                                                <constraint firstItem="XQP-UN-5De" firstAttribute="leading" secondItem="Ob8-Bf-Tcc" secondAttribute="leading" id="H9h-5y-CyA"/>
+                                                <constraint firstItem="Rt4-FY-345" firstAttribute="centerY" secondItem="Ob8-Bf-Tcc" secondAttribute="centerY" id="HmJ-D6-MAd"/>
+                                                <constraint firstItem="gmw-kG-2ni" firstAttribute="centerY" secondItem="voS-ej-vBC" secondAttribute="centerY" id="Phi-O0-g7M"/>
+                                                <constraint firstItem="QEs-1a-vmo" firstAttribute="leading" secondItem="XQP-UN-5De" secondAttribute="trailing" constant="10" id="QIC-LB-i4x"/>
+                                                <constraint firstItem="Ob8-Bf-Tcc" firstAttribute="leading" secondItem="voS-ej-vBC" secondAttribute="leading" id="ZHW-Jk-FlJ"/>
+                                                <constraint firstItem="luF-87-LDa" firstAttribute="centerY" secondItem="nri-Nh-RUZ" secondAttribute="centerY" id="bTV-3x-dJn"/>
+                                                <constraint firstItem="XQP-UN-5De" firstAttribute="top" secondItem="Ob8-Bf-Tcc" secondAttribute="bottom" constant="5" id="cvs-7e-Qs2"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XQP-UN-5De" secondAttribute="bottom" constant="15" id="hPc-7d-Pq0"/>
+                                                <constraint firstItem="Ob8-Bf-Tcc" firstAttribute="top" secondItem="voS-ej-vBC" secondAttribute="bottom" constant="5" id="s9i-Z6-1Xl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="blockIndexLabel" destination="QEs-1a-vmo" id="lgv-fj-5Ao"/>
+                                            <outlet property="propertyIDLabel" destination="gmw-kG-2ni" id="itq-qp-rsB"/>
+                                            <outlet property="regionNameLabel" destination="Rt4-FY-345" id="ajb-3N-2cP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PropertyUniqueCell" rowHeight="65" id="Zef-z6-dBM" customClass="PropertyUniqueCell" customModule="aus_sem_2_juraj_macak" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="292" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zef-z6-dBM" id="xuz-rY-frG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="binary_ico" translatesAutoresizingMaskIntoConstraints="NO" id="hS9-MH-yiH">
+                                                    <rect key="frame" x="15" y="17.5" width="30" height="30"/>
+                                                    <color key="tintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="1ds-5j-nYe"/>
+                                                        <constraint firstAttribute="width" constant="30" id="EoH-d4-znV"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifikačné číslo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNn-Ur-Dh8">
+                                                    <rect key="frame" x="55" y="15" width="106" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2342423423" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5l-lu-ECN">
+                                                    <rect key="frame" x="171" y="15" width="80" height="15"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Index bloku v neutriedenom súbore:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-xo-S4X">
+                                                    <rect key="frame" x="55" y="35" width="203" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amJ-BA-rsc">
+                                                    <rect key="frame" x="268" y="35" width="78" height="15"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hS9-MH-yiH" firstAttribute="leading" secondItem="xuz-rY-frG" secondAttribute="leading" constant="15" id="3xK-sz-0Jv"/>
+                                                <constraint firstItem="amJ-BA-rsc" firstAttribute="centerY" secondItem="4Um-xo-S4X" secondAttribute="centerY" id="42q-Ty-UkR"/>
+                                                <constraint firstItem="4Um-xo-S4X" firstAttribute="top" secondItem="qNn-Ur-Dh8" secondAttribute="bottom" constant="5" id="9ON-ey-U09"/>
+                                                <constraint firstItem="hS9-MH-yiH" firstAttribute="centerY" secondItem="xuz-rY-frG" secondAttribute="centerY" id="BrJ-Z3-2jD"/>
+                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="4Um-xo-S4X" secondAttribute="bottom" constant="15" id="JTJ-BJ-VJU"/>
+                                                <constraint firstItem="qNn-Ur-Dh8" firstAttribute="top" secondItem="xuz-rY-frG" secondAttribute="top" constant="15" id="fJ1-GO-hyC"/>
+                                                <constraint firstItem="amJ-BA-rsc" firstAttribute="leading" secondItem="4Um-xo-S4X" secondAttribute="trailing" constant="10" id="hXU-fh-kqD"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="amJ-BA-rsc" secondAttribute="trailing" constant="15" id="i64-Lh-cGH"/>
+                                                <constraint firstItem="f5l-lu-ECN" firstAttribute="leading" secondItem="qNn-Ur-Dh8" secondAttribute="trailing" constant="10" id="kxM-9K-uVi"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="f5l-lu-ECN" secondAttribute="trailing" constant="15" id="nEc-mT-Bsp"/>
+                                                <constraint firstItem="4Um-xo-S4X" firstAttribute="leading" secondItem="hS9-MH-yiH" secondAttribute="trailing" constant="10" id="oFw-9r-G50"/>
+                                                <constraint firstItem="qNn-Ur-Dh8" firstAttribute="leading" secondItem="4Um-xo-S4X" secondAttribute="leading" id="ta3-V4-aeL"/>
+                                                <constraint firstItem="f5l-lu-ECN" firstAttribute="centerY" secondItem="qNn-Ur-Dh8" secondAttribute="centerY" id="v1c-1M-He1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="blockIndexLabel" destination="amJ-BA-rsc" id="Jkg-vR-Gya"/>
+                                            <outlet property="uniqueIDLabel" destination="f5l-lu-ECN" id="3iO-f0-BFN"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="OxF-mB-Wt5" id="Eng-qG-UDS"/>
@@ -189,6 +328,7 @@
     </scenes>
     <resources>
         <image name="binary_ico" width="80" height="80"/>
+        <image name="block_ico" width="88" height="95"/>
         <image name="home_ico" width="86" height="86"/>
     </resources>
 </document>

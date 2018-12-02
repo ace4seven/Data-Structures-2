@@ -10,15 +10,14 @@ import UIKit
 
 class PropertyRegionNumberCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var propertyIDLabel: UILabel!
+    @IBOutlet weak var regionNameLabel: UILabel!
+    @IBOutlet weak var blockIndexLabel: UILabel!
+    
+    func setupCell(property: PropertyByRegionAndNumber) {
+        propertyIDLabel.text = "\(property.propertyID)"
+        regionNameLabel.text = property.regionName
+        blockIndexLabel.text = "\(property.blockIndex)"
     }
 
 }

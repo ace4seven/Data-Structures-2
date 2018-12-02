@@ -49,6 +49,34 @@ extension CoreHash {
         return result
     }
     
+    func getPropertiesRegionNamePropertyID() -> [Block<PropertyByRegionAndNumber>] {
+        var result: [Block<PropertyByRegionAndNumber>] = []
+        
+        dynamicHashRnamePId.traverseMainFile { block in
+            result.append(block)
+        }
+        
+        dynamicHashRnamePId.traverseSupportFile { block in
+            result.append(block)
+        }
+        
+        return result
+    }
+    
+    func getPropertiesUnique() -> [Block<PropertyByUnique>] {
+        var result: [Block<PropertyByUnique>] = []
+        
+        dynamicHashUnique.traverseMainFile { block in
+            result.append(block)
+        }
+        
+        dynamicHashUnique.traverseSupportFile { block in
+            result.append(block)
+        }
+        
+        return result
+    }
+    
     func changeConfig(mainFileSize: Int, supportFileSize: Int, deep: Int) {
         Config.saveNewConfig(mainFileSize: mainFileSize, supportFileSize: supportFileSize, deep: deep)
         self.config = Config()

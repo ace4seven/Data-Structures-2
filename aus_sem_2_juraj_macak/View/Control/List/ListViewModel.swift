@@ -24,23 +24,37 @@ extension ListViewModel: ListVM {
     func setup(viewDelegate: ListViewDelegate) {
         self.viewDelegate = viewDelegate
         
+        var items = [ListItemType]()
+        
         switch type {
         case .property:
             let blocks = CoreHash.shared.getPropertiesFromFile()
-            
-            var items = [ListItemType]()
-            
             for block in blocks {
                 items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
                 for record in block.records {
                     items.append(.property(property: record))
                 }
             }
+        case .propertyUnique:
+            let blocks = CoreHash.shared.getPropertiesUnique()
+            for block in blocks {
+                items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
+                for record in block.records {
+                    items.append(.propertyUnique(record))
+                }
+            }
             
-            viewDelegate.showItems(items: items)
-        default:
-            return
+        case .propertyRegionNumber:
+            let blocks = CoreHash.shared.getPropertiesRegionNamePropertyID()
+            for block in blocks {
+                items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
+                for record in block.records {
+                    items.append(.propertyNameNumber(record))
+                }
+            }
         }
+        
+        viewDelegate.showItems(items: items, for: type)
     }
     
 }

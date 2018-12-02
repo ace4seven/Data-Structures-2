@@ -26,4 +26,12 @@ class ControlOptionsController: UIViewController {
         performSegue(withIdentifier: String(describing: ListController.self), sender: ListType.property)
     }
     
+    @IBAction func controlUniquePressed(_ sender: Any) {
+        performSegue(withIdentifier: String(describing: ListController.self), sender: ListType.propertyUnique)
+    }
+    
+    @IBAction func controlRegionNamePropertyIDPressed(_ sender: Any) {
+         performSegue(withIdentifier: String(describing: ListController.self), sender: ListType.propertyRegionNumber)
+    }
+    
 }

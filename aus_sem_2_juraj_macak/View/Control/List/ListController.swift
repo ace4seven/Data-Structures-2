@@ -39,7 +39,15 @@ class ListController: UIViewController {
 
 extension ListController: ListViewDelegate {
     
-    func showItems(items: [ListItemType]) {
+    func showItems(items: [ListItemType], for type: ListType) {
+        switch type {
+        case .property:
+            title = "Nehnuteľností v neutriedenom súbore"
+        case .propertyRegionNumber:
+            title = "Blokovacie indexi - Názov k.u a súpisné číslo"
+        case .propertyUnique:
+            title = "Blokovacie indexi - Unikátne číslo"
+        }
         self.items = items
 
         tableView.reloadData()
@@ -63,8 +71,10 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
             return 58
         case .property:
             return 116
-        default:
-            return UITableView.automaticDimension
+        case .propertyUnique:
+            return 65
+        case .propertyNameNumber:
+            return 90
         }
     }
     
@@ -74,8 +84,10 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
             return 58
         case .property:
             return 116
-        default:
-            return UITableView.automaticDimension
+        case .propertyUnique:
+            return 65
+        case .propertyNameNumber:
+            return 90
         }
     }
     
@@ -102,11 +114,13 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
             
         case .propertyNameNumber(let prop):
             if let cell = tableView.dequeueReusableCell(fromClass: PropertyRegionNumberCell.self, for: indexPath) {
-                return UITableViewCell()
+                cell.setupCell(property: prop)
+                return cell
             }
         case .propertyUnique(let prop):
             if let cell = tableView.dequeueReusableCell(fromClass: PropertyUniqueCell.self, for: indexPath) {
-                return UITableViewCell()
+                cell.setupCell(property: prop)
+                return cell
             }
         }
         

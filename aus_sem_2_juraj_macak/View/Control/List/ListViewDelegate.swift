@@ -19,5 +19,5 @@ protocol ListVM: class {
 }
 
 protocol ListViewDelegate: class {
-    func showItems(items: [ListItemType])
+    func showItems(items: [ListItemType], for type: ListType)
 }

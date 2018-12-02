@@ -10,15 +10,12 @@ import UIKit
 
 class PropertyUniqueCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var uniqueIDLabel: UILabel!
+    @IBOutlet weak var blockIndexLabel: UILabel!
+    
+    func setupCell(property: PropertyByUnique) {
+        self.uniqueIDLabel.text = "\(property.uniqueID)"
+        self.blockIndexLabel.text = "\(property.blockIndex)"
     }
 
 }
