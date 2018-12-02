@@ -174,6 +174,10 @@ extension DynamicHash {
     }
     
     func find(_ record: T) -> T? {
+        if trie.root == nil {
+            return nil
+        }
+        
         let ext = trie.find(bitset: record.getHash())
         if let offset = ext.offset {
             block = fm.mainFile.getBlock(offset: offset, maxRecordsCount: mainFileSize)

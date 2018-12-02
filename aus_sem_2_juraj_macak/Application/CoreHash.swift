@@ -107,6 +107,30 @@ extension CoreHash {
         return nil
     }
     
+    func generateProperties(count: Int, completion: @escaping () -> ()) {
+        var index = count
+        var uniqueIndex = 1
+        let numberOfPropertiesInRegion = count / RegionNamesStorage.names.count + 10
+        while index > 0 {
+            var property = Property(uniqueID: UInt(uniqueIndex),
+                                    propertyID: UInt.random(in: 1..<UInt(numberOfPropertiesInRegion)),
+                                    regionName: RegionNamesStorage.names[Int.random(in: 0..<RegionNamesStorage.names.count)],
+                                    desc: PropertyDescStorage.words[Int.random(in: 0..<PropertyDescStorage.words.count)])
+            while insertProperty(property: property) == false {
+                property = Property(uniqueID: UInt(uniqueIndex),
+                                    propertyID: UInt.random(in: 1...UInt(numberOfPropertiesInRegion)),
+                                    regionName: RegionNamesStorage.names[Int.random(in: 0..<RegionNamesStorage.names.count)],
+                                    desc: PropertyDescStorage.words[Int.random(in: 0..<PropertyDescStorage.words.count)])
+            }
+            
+            uniqueIndex += 1
+            index -= 1
+        }
+        
+        completion()
+        print("Generovanie uspesne")
+    }
+    
     func backupSystem() -> Bool {
         
         return false

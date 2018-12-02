@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias Byte = UInt8
 
@@ -136,3 +137,33 @@ extension String {
     }
     
 }
+
+extension UIViewController {
+    
+    func composeAlert(title: String, message: String, completion: @escaping ((UIAlertAction) -> ())) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: completion))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+}
+
+extension DispatchQueue {
+
+    public func asyncAfter(seconds: TimeInterval, handler: @escaping () -> Void) {
+        let deadline = DispatchTime.now() + DispatchTimeInterval.milliseconds(Int(Double(seconds * 1000)))
+        asyncAfter(deadline: deadline, execute: handler)
+    }
+    
+}
+
