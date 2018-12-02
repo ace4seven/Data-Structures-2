@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1612016F21A9977600EAAF0B /* ByteConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612016E21A9977600EAAF0B /* ByteConverter.swift */; };
+		161E87B321B48BBB00B942FF /* PropertyDetailController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 161E87B221B48BBB00B942FF /* PropertyDetailController.storyboard */; };
+		161E87B521B48BCC00B942FF /* PropertyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161E87B421B48BCC00B942FF /* PropertyDetailController.swift */; };
 		161F6B3421B3E63200AA2D51 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161F6B3321B3E63200AA2D51 /* Config.swift */; };
 		161F6B3721B3F54400AA2D51 /* RegionNameStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161F6B3621B3F54400AA2D51 /* RegionNameStorage.swift */; };
 		161F6B3921B3F56500AA2D51 /* PropertyDescStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161F6B3821B3F56500AA2D51 /* PropertyDescStorage.swift */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		1612016E21A9977600EAAF0B /* ByteConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteConverter.swift; sourceTree = "<group>"; };
+		161E87B221B48BBB00B942FF /* PropertyDetailController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PropertyDetailController.storyboard; sourceTree = "<group>"; };
+		161E87B421B48BCC00B942FF /* PropertyDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailController.swift; sourceTree = "<group>"; };
 		161F6B3321B3E63200AA2D51 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		161F6B3621B3F54400AA2D51 /* RegionNameStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionNameStorage.swift; sourceTree = "<group>"; };
 		161F6B3821B3F56500AA2D51 /* PropertyDescStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDescStorage.swift; sourceTree = "<group>"; };
@@ -106,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		161E87B121B48BA100B942FF /* PropertyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				161E87B221B48BBB00B942FF /* PropertyDetailController.storyboard */,
+				161E87B421B48BCC00B942FF /* PropertyDetailController.swift */,
+			);
+			path = PropertyDetail;
+			sourceTree = "<group>";
+		};
 		161F6B3521B3F53A00AA2D51 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +247,7 @@
 		16891E382197124600C11030 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				161E87B121B48BA100B942FF /* PropertyDetail */,
 				161F6B4621B4148200AA2D51 /* Control */,
 				161F6B4321B3FDB200AA2D51 /* Settings */,
 				161F6B3A21B3F5C400AA2D51 /* Actions */,
@@ -372,6 +386,7 @@
 				161F6B4A21B414C500AA2D51 /* ControlOptionsController.storyboard in Resources */,
 				161F6B3E21B3F5F200AA2D51 /* ActionsController.storyboard in Resources */,
 				161F6B4F21B4345100AA2D51 /* ListController.storyboard in Resources */,
+				161E87B321B48BBB00B942FF /* PropertyDetailController.storyboard in Resources */,
 				16891E2A2197122800C11030 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +444,7 @@
 				161F6B3921B3F56500AA2D51 /* PropertyDescStorage.swift in Sources */,
 				161F6B3721B3F54400AA2D51 /* RegionNameStorage.swift in Sources */,
 				161F6B4D21B4344700AA2D51 /* ListController.swift in Sources */,
+				161E87B521B48BCC00B942FF /* PropertyDetailController.swift in Sources */,
 				16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */,
 				16A949A821A847EC00349BBA /* UnorderedFile.swift in Sources */,
 				16A2299F21AB361D00026C54 /* TrieNode.swift in Sources */,

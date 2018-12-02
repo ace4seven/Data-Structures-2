@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+protocol ActionsVM: class {
+    func setup(viewDelegate: ActionsViewDelegate)
+    
+    func searchByUnique(id: UInt)
+    func searchByNameAndId(regionName: String, propertyID: UInt)
+    func addProperty(property: Property)
+}
+
+protocol ActionsViewDelegate: class {
+    func showAlert(message: ActionMessage)
+    func showDetail(property: Property)
+}

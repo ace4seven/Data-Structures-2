@@ -41,7 +41,7 @@ extension CoreHash {
     func getPropertiesFromFile() -> [Block<Property>] {
         var result: [Block<Property>] = []
         
-        for i in 0..<freeIndex {
+        for i in 0...freeIndex {
             let block = unOrderedFile.getBlock(offset: UInt64(i), maxRecordsCount: config?.mainFileSize ?? 4)
             result.append(block)
         }

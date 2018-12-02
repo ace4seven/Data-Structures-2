@@ -9,22 +9,30 @@
 import UIKit
 
 class PropertyDetailController: UIViewController {
-
+    
+    @IBOutlet weak var uniqueIDLabel: UILabel!
+    
+    @IBOutlet weak var propertyIDLabel: UILabel!
+    
+    @IBOutlet weak var regionNameLabel: UILabel!
+    
+    @IBOutlet weak var descLabel: UILabel!
+    
+    var property: Property?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let property = self.property else {
+            return
+        }
+        
+        uniqueIDLabel.text = "\(property.uniqueID)"
+        propertyIDLabel.text = "\(property.propertyID)"
+        regionNameLabel.text = property.regionName
+        descLabel.text = property.desc
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
