@@ -34,7 +34,7 @@ class TestController: UIViewController {
         super.viewDidLoad()
         
 //        dynamicTest(numbOfRecords: 100, deep: 0, mainFileSize: 1, supportFileSize: 1, duplicityChance: .weak)
-        dynamicPropertyTest(numbOfRecords: 10000, deep: 20, mainFileSize: 4, supportFileSize: 2, duplicityChance: .weak)
+        dynamicPropertyTest(numbOfRecords: 10000, deep: 15, mainFileSize: 4, supportFileSize: 3, duplicityChance: .none)
     }
     
 }

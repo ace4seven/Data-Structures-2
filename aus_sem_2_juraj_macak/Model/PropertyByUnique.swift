@@ -11,7 +11,7 @@ import Foundation
 class PropertyByUnique {
     
     let uniqueID: UInt
-    let blockIndex: UInt
+    var blockIndex: UInt
     
     init(data: [Byte]) {
         let uniqueIDData = data.enumerated().compactMap { $0 < 8 ? $1 : nil }
@@ -19,6 +19,11 @@ class PropertyByUnique {
         
         self.uniqueID = ByteConverter.fromByteArray(uniqueIDData, UInt.self)
         self.blockIndex = ByteConverter.fromByteArray(blockIndexData, UInt.self)
+    }
+    
+    init(uniqueID: UInt, blockIndex: UInt) {
+        self.uniqueID = uniqueID
+        self.blockIndex = blockIndex
     }
     
 }

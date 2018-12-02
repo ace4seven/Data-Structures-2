@@ -13,7 +13,7 @@ class PropertyByRegionAndNumber {
     let propertyID: UInt
     let regionName: String
     
-    let blockIndex: UInt
+    var blockIndex: UInt
     
     init(propertyID: UInt, regionName: String, blockIndex: UInt) {
         self.propertyID = propertyID
