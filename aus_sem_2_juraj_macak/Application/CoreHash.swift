@@ -12,14 +12,7 @@ class CoreHash {
     public static let shared = CoreHash()
     
     private init() {
-        
         self.config = Config()
-        
-        if config == nil {
-            Config.saveNewConfig(mainFileSize: 4, supportFileSize: 2, deep: 10)
-            self.config = Config()
-        }
-        
         self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique", supportingFileName: "properties_unique_sp"))
         self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg", supportingFileName: "properties_reg_sp"))
     }

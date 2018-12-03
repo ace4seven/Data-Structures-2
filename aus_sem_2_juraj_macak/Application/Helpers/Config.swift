@@ -66,4 +66,8 @@ class Config {
         fileHandle?.write(Data(bytes: buffer))
     }
     
+    static func configExists() -> Bool {
+        return Config.fileManager.fileExists(atPath: Config.filePath) 
+    }
+    
 }

@@ -47,6 +47,7 @@
 		16A949A821A847EC00349BBA /* UnorderedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A949A721A847EC00349BBA /* UnorderedFile.swift */; };
 		16A949AA21A8481000349BBA /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A949A921A8481000349BBA /* TestModel.swift */; };
 		16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BE92F221A309F8003E8E43 /* Extensions.swift */; };
+		16EF299E21B570EC00D9D268 /* SettingsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EF299D21B570EC00D9D268 /* SettingsController.storyboard */; };
 		25D072CFFB7B8C643195DB9D /* libPods-aus_sem_2_juraj_macak.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		16A949A721A847EC00349BBA /* UnorderedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnorderedFile.swift; sourceTree = "<group>"; };
 		16A949A921A8481000349BBA /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		16BE92F221A309F8003E8E43 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		16EF299D21B570EC00D9D268 /* SettingsController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsController.storyboard; sourceTree = "<group>"; };
 		2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aus_sem_2_juraj_macak.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		856065257ECD5EB1B8BFD921 /* Pods-aus_sem_2_juraj_macak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.debug.xcconfig"; sourceTree = "<group>"; };
 		D80AE9AD4D49DBCFD112DA6C /* Pods-aus_sem_2_juraj_macak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.release.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				161F6B4421B3FDC300AA2D51 /* SettingsController.swift */,
+				16EF299D21B570EC00D9D268 /* SettingsController.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				161F6B4A21B414C500AA2D51 /* ControlOptionsController.storyboard in Resources */,
 				161F6B3E21B3F5F200AA2D51 /* ActionsController.storyboard in Resources */,
 				161F6B4F21B4345100AA2D51 /* ListController.storyboard in Resources */,
+				16EF299E21B570EC00D9D268 /* SettingsController.storyboard in Resources */,
 				161E87B321B48BBB00B942FF /* PropertyDetailController.storyboard in Resources */,
 				16891E2A2197122800C11030 /* Main.storyboard in Resources */,
 			);

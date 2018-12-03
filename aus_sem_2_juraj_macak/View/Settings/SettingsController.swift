@@ -63,15 +63,23 @@ extension SettingsController {
 
 extension SettingsController {
     
-    @IBAction func generateButtonPressed(_ sender: Any) {
+    @IBAction func createConfigFile() {
         guard let deep: Int = Int(deepTextField.text ?? ""), let mainSize: Int = Int(self.mainFileSizeTextField.text ?? ""), let supportSize: Int = Int(self.supportFileSizeTextField.text ?? "") else {
             composeAlert(title: "Pozor", message: "Je potrebné vyplniť všetky polia") { _ in }
-            
             return
         }
         
         CoreHash.shared.cleanFiles()
         CoreHash.shared.changeConfig(mainFileSize: mainSize, supportFileSize: supportSize, deep: deep)
+        
+        composeAlert(title: "Úsppech", message: "Konfiguračný súbor bol úspešné vytvorený", completion: { _ in })
+    }
+    
+    @IBAction func generateButtonPressed(_ sender: Any) {
+        if !Config.configExists() {
+            composeAlert(title: "Pozor", message: "Musíte vytvoriť konfiguračný súbor, aby sa mohli dáta generovať !!!", completion: { _ in})
+            return
+        }
         
         generateButton.isUserInteractionEnabled = false
         generateButton.setTitle("Generujem dáta ...", for: .normal)
