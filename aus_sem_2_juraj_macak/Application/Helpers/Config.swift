@@ -39,15 +39,6 @@ class Config {
         self.deep = ByteConverter.fromByteArray(deepData, Int.self)
     }
     
-    deinit {
-        do {
-            try Config.fileManager.removeItem(atPath: Config.filePath)
-        } catch(let error) {
-            print("Subor sa nepodarilo odstranin: \(error.localizedDescription)")
-        }
-        print("Subor vymazany \(Config.filePath)")
-    }
-    
     static func saveNewConfig(mainFileSize: Int, supportFileSize: Int, deep: Int) {
         var buffer:[Byte] = []
         
@@ -67,7 +58,16 @@ class Config {
     }
     
     static func configExists() -> Bool {
-        return Config.fileManager.fileExists(atPath: Config.filePath) 
+        return Config.fileManager.fileExists(atPath: Config.filePath)
+    }
+    
+    func removeFile() {
+        do {
+            try Config.fileManager.removeItem(atPath: Config.filePath)
+        } catch(let error) {
+            print("Subor sa nepodarilo odstranin: \(error.localizedDescription)")
+        }
+        print("Subor vymazany \(Config.filePath)")
     }
     
 }

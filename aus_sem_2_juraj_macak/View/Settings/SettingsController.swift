@@ -22,6 +22,10 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var buttonIndicator: UIActivityIndicatorView!
     @IBOutlet weak var buttonWrapper: UIView!
     @IBOutlet weak var generateButton: UIButton!
+    @IBOutlet weak var progressWrapper: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var percentLabel: UILabel!
+    
     
 }
 
@@ -43,6 +47,9 @@ extension SettingsController {
         
         self.buttonIndicator.alpha = 0.0
         self.buttonIndicator.stopAnimating()
+        
+        progressWrapper.alpha = 0.0
+        
     }
     
     fileprivate func showIndicator(status: Bool) {
@@ -68,8 +75,6 @@ extension SettingsController {
             composeAlert(title: "Pozor", message: "Je potrebné vyplniť všetky polia") { _ in }
             return
         }
-        
-        CoreHash.shared.cleanFiles()
         CoreHash.shared.changeConfig(mainFileSize: mainSize, supportFileSize: supportSize, deep: deep)
         
         composeAlert(title: "Úsppech", message: "Konfiguračný súbor bol úspešné vytvorený", completion: { _ in })
@@ -81,17 +86,34 @@ extension SettingsController {
             return
         }
         
+        CoreHash.shared.cleanFiles()
+        
+        progressWrapper.alpha = 1.0
+        
         generateButton.isUserInteractionEnabled = false
         generateButton.setTitle("Generujem dáta ...", for: .normal)
         generateButton.alpha = 0.3
         self.view.layoutIfNeeded()
         showIndicator(status: true)
         
-        DispatchQueue.main.asyncAfter(seconds: 0.6) { [weak self] in
-            CoreHash.shared.generateProperties(count: Int(self?.propertySlider.value ?? 100)) { [weak self] in
-                self?.showIndicator(status: false)
-                self?.composeAlert(title: "Uspech", message: "Dáta boli úspešne vygenerované", completion: { _ in
-                    self?.navigationController?.popViewController(animated: true)
+        let sliderValue = self.propertySlider.value
+        
+        DispatchQueue.main.asyncAfter(seconds: 0.5) { [weak self] in
+            DispatchQueue.global(qos: .userInteractive).async {
+                CoreHash.shared.generateProperties(count: Int(sliderValue), completion:
+                    { [weak self] in
+                        DispatchQueue.main.sync {
+                            self?.showIndicator(status: false)
+                            self?.composeAlert(title: "Uspech", message: "Dáta boli úspešne vygenerované", completion: { _ in
+                                self?.navigationController?.popViewController(animated: true)
+                            })
+                        }
+                    }, progress: { [weak self] percent in
+                        
+                        DispatchQueue.main.sync {
+                            self?.progressView.setProgress(Float(percent) / 100, animated: true)
+                            self?.percentLabel.text = "\(percent) %"
+                        }
                 })
             }
         }

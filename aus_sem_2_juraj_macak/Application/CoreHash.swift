@@ -32,12 +32,14 @@ class CoreHash {
 extension CoreHash {
     
     func cleanFiles() {
-        config = nil
         freeIndex = 0
-        
+        block = nil
         dynamicHashUnique.removeFiles()
         dynamicHashRnamePId.removeFiles()
         unOrderedFile.removeFile()
+        
+        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique", supportingFileName: "properties_unique_sp"))
+        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg", supportingFileName: "properties_reg_sp"))
     }
     
     func getPropertiesFromFile() -> [Block<Property>] {
@@ -150,9 +152,10 @@ extension CoreHash {
         return nil
     }
     
-    func generateProperties(count: Int, completion: @escaping () -> ()) {
+    func generateProperties(count: Int, completion: @escaping () -> (), progress: @escaping (Int) -> ()) {
         var index = count
         var uniqueIndex = 1
+        var currentPercent: Int = 0
         let numberOfPropertiesInRegion = count / RegionNamesStorage.names.count + 10
         while index > 0 {
             var property = Property(uniqueID: UInt(uniqueIndex),
@@ -164,6 +167,11 @@ extension CoreHash {
                                     propertyID: UInt.random(in: 1...UInt(numberOfPropertiesInRegion)),
                                     regionName: RegionNamesStorage.names[Int.random(in: 0..<RegionNamesStorage.names.count)],
                                     desc: PropertyDescStorage.words[Int.random(in: 0..<PropertyDescStorage.words.count)])
+            }
+            
+            if Int((Double(uniqueIndex) / Double(count)  * 100)) > currentPercent {
+                currentPercent = Int((Double(uniqueIndex) / Double(count)  * 100))
+                progress(currentPercent)
             }
             
             uniqueIndex += 1
