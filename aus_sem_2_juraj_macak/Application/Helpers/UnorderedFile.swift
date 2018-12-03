@@ -20,12 +20,18 @@ class UnFileManager<T: Record> {
         self.supportingFile = UnorderedFile(fileName: supportingFileName)
     }
     
+    func removeFiles() {
+        mainFile.removeFile()
+        supportingFile.removeFile()
+    }
+    
 }
 
 class UnorderedFile<T: Record> {
     
     fileprivate var fileManager = FileManager.default
     fileprivate var _fileHandle: FileHandle?
+    fileprivate let filePath: String
     
     var fileHandle: FileHandle {
         get {
@@ -34,7 +40,7 @@ class UnorderedFile<T: Record> {
     }
     
     init(fileName: String) {
-        let filePath = C.DOC_PATH + "/" + fileName + ".bin"
+        self.filePath = C.DOC_PATH + "/" + fileName + ".bin"
         
         print(filePath)
         
@@ -61,6 +67,17 @@ extension UnorderedFile {
         fileHandle.seek(toFileOffset: offset * UInt64(length))
         let data: [Byte] = [Byte](fileHandle.readData(ofLength: length))
         return Block(bytes: data, maxRecordsCount: maxRecordsCount, offset: offset)
+    }
+    
+    func removeFile() {
+        do {
+            try fileManager.removeItem(atPath: self.filePath)
+        } catch(let error) {
+            print("Subor sa nepodarilo odstranin: \(error.localizedDescription)")
+        }
+        print("Subor vymazany \(filePath)")
+        
+        fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
     }
     
 }

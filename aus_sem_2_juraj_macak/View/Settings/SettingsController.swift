@@ -70,13 +70,15 @@ extension SettingsController {
             return
         }
         
+        CoreHash.shared.cleanFiles()
+        CoreHash.shared.changeConfig(mainFileSize: mainSize, supportFileSize: supportSize, deep: deep)
+        
         generateButton.isUserInteractionEnabled = false
         generateButton.setTitle("Generujem dáta ...", for: .normal)
         generateButton.alpha = 0.3
         self.view.layoutIfNeeded()
         showIndicator(status: true)
         
-        Config.saveNewConfig(mainFileSize: mainSize, supportFileSize: supportSize, deep: deep)
         DispatchQueue.main.asyncAfter(seconds: 0.6) { [weak self] in
             CoreHash.shared.generateProperties(count: Int(self?.propertySlider.value ?? 100)) { [weak self] in
                 self?.showIndicator(status: false)

@@ -53,6 +53,10 @@ class DynamicHash<T: Record> {
 
 extension DynamicHash {
     
+    func removeFiles() {
+        self.fm.removeFiles()
+    }
+    
     func traverseMainFile(completion: (Block<T>) -> ()) {
         for i in 0..<freeOffset {
             completion(fm.mainFile.getBlock(offset: i, maxRecordsCount: mainFileSize))

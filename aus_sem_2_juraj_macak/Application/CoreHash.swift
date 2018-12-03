@@ -38,6 +38,15 @@ class CoreHash {
 
 extension CoreHash {
     
+    func cleanFiles() {
+        config = nil
+        freeIndex = 0
+        
+        dynamicHashUnique.removeFiles()
+        dynamicHashRnamePId.removeFiles()
+        unOrderedFile.removeFile()
+    }
+    
     func getPropertiesFromFile() -> [Block<Property>] {
         var result: [Block<Property>] = []
         
@@ -81,8 +90,8 @@ extension CoreHash {
         Config.saveNewConfig(mainFileSize: mainFileSize, supportFileSize: supportFileSize, deep: deep)
         self.config = Config()
         
-        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique_bin", supportingFileName: "properties_unique_sp_bin"))
-        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg_bin", supportingFileName: "properties_reg_sp_bin"))
+        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique", supportingFileName: "properties_unique_sp"))
+        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg", supportingFileName: "properties_reg_sp"))
         
         block = nil
         freeIndex = 0
@@ -94,7 +103,7 @@ extension CoreHash {
         let propertyUnique = PropertyByUnique(uniqueID: property.uniqueID, blockIndex: freeIndex)
         
         if dynamicHashUnique.find(propertyUnique) == nil && dynamicHashRnamePId.find(propertyRegAndID) == nil {
-            if let block = self.block {
+            if self.block != nil {
                 if self.block!.records.count < self.config?.mainFileSize ?? 4 {
                     self.block!.insert(record: property)
                 } else {
@@ -181,12 +190,5 @@ extension CoreHash {
         
         return false
     }
-    
-    
-}
-
-// MARK: - PRIVATES
-
-extension CoreHash {
     
 }
