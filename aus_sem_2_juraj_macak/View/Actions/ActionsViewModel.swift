@@ -30,6 +30,14 @@ class ActionsViewModel {
 
 extension ActionsViewModel: ActionsVM {
     
+    func changeDesc(propertyUnique: UInt, desc: String) {
+        if let property = CoreHash.shared.changePropertyDesc(uniqueID: propertyUnique, desc: desc) {
+            viewDelegate?.showDetail(property: property)
+        } else {
+            viewDelegate?.showAlert(message: .notFound)
+        }
+    }
+    
     func addProperty(property: Property) {
         if CoreHash.shared.insertProperty(property: property) {
             viewDelegate?.showDetail(property: property)

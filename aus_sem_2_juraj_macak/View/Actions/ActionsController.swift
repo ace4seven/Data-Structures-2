@@ -45,6 +45,10 @@ extension ActionsController: ActionsViewDelegate {
 
 extension ActionsController {
     
+    @IBAction func changeDescriptionButtonPressed() {
+        changeDescForm()
+    }
+    
     @IBAction func searchPropertyButtonPressed(_ sender: Any) {
         searchOptionsForm()
     }
@@ -88,6 +92,31 @@ extension ActionsController {
         let searchAction = UIAlertAction(title: "Vyhľadať", style: .default, handler: { alert -> Void in
             let uniqueTextfield = alertController.textFields![0] as UITextField
             self.viewModel.searchByUnique(id: UInt(uniqueTextfield.text ?? "") ?? 0)
+        })
+        let cancelAction = UIAlertAction(title: "Zrušiť", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        
+        alertController.addAction(searchAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    fileprivate func changeDescForm() {
+        let alertController = UIAlertController(title: "Číslo nehnuteľností", message: "Zmena popisu nehnuteľností", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Zadajte unikátne číslo nehnuteľností"
+        }
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Zadajte nový popis nehnuteľností"
+        }
+        let searchAction = UIAlertAction(title: "Zmeniť", style: .default, handler: { alert -> Void in
+            let uniqueTextfield = alertController.textFields![0] as UITextField
+            let descTextField = alertController.textFields![1] as UITextField
+            self.viewModel.changeDesc(propertyUnique: UInt(uniqueTextfield.text ?? "") ?? 0, desc: descTextField.text ?? "")
         })
         let cancelAction = UIAlertAction(title: "Zrušiť", style: .default, handler: {
             (action : UIAlertAction!) -> Void in })

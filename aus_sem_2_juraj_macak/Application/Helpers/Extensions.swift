@@ -97,7 +97,6 @@ extension String {
                 result.append(delimeter)
             }
         }
-        
         return result
     }
     
