@@ -11,6 +11,7 @@ import UIKit
 enum ListItemType {
     
     case block(address: String)
+    case blockSupportIndex(address: String, index: Int64)
     case property(property: Property)
     case propertyNameNumber(PropertyByRegionAndNumber)
     case propertyUnique(PropertyByUnique)
@@ -71,7 +72,7 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
             return 58
         case .property:
             return 116
-        case .propertyUnique:
+        case .propertyUnique, .blockSupportIndex:
             return 65
         case .propertyNameNumber:
             return 90
@@ -84,7 +85,7 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
             return 58
         case .property:
             return 116
-        case .propertyUnique:
+        case .propertyUnique, .blockSupportIndex:
             return 65
         case .propertyNameNumber:
             return 90
@@ -104,6 +105,11 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
         case .block(let address):
             if let cell = tableView.dequeueReusableCell(fromClass: BlockCell.self, for: indexPath) {
                 cell.setupCell(address: address)
+                return cell
+            }
+        case .blockSupportIndex(let address, index: let index):
+            if let cell = tableView.dequeueReusableCell(fromClass: BlockCellSupportIndex.self, for: indexPath) {
+                cell.setupCell(address: address, supportIndex: index)
                 return cell
             }
         case .property(let property):

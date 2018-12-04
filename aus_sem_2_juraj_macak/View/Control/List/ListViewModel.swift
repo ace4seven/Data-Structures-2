@@ -30,7 +30,7 @@ extension ListViewModel: ListVM {
         case .property:
             let blocks = CoreHash.shared.getPropertiesFromFile()
             for block in blocks {
-                items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
+                items.append(.block(address: "\(block.getOffset()!)"))
                 for record in block.records {
                     items.append(.property(property: record))
                 }
@@ -38,7 +38,7 @@ extension ListViewModel: ListVM {
         case .propertyUnique:
             let blocks = CoreHash.shared.getPropertiesUnique()
             for block in blocks {
-                items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
+                items.append(.blockSupportIndex(address: "\(block.getOffset()!)", index: block.supportingFileOffset()))
                 for record in block.records {
                     items.append(.propertyUnique(record))
                 }
@@ -47,7 +47,7 @@ extension ListViewModel: ListVM {
         case .propertyRegionNumber:
             let blocks = CoreHash.shared.getPropertiesRegionNamePropertyID()
             for block in blocks {
-                items.append(.block(address: "\(block.getOffset()! * block.getSize())"))
+                    items.append(.blockSupportIndex(address: "\(block.getOffset()!)", index: block.supportingFileOffset()))
                 for record in block.records {
                     items.append(.propertyNameNumber(record))
                 }

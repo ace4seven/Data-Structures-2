@@ -48,6 +48,7 @@
 		16A949AA21A8481000349BBA /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A949A921A8481000349BBA /* TestModel.swift */; };
 		16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BE92F221A309F8003E8E43 /* Extensions.swift */; };
 		16EF299E21B570EC00D9D268 /* SettingsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EF299D21B570EC00D9D268 /* SettingsController.storyboard */; };
+		16EF29A021B669D800D9D268 /* BlockCellSupportIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF299F21B669D800D9D268 /* BlockCellSupportIndex.swift */; };
 		25D072CFFB7B8C643195DB9D /* libPods-aus_sem_2_juraj_macak.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		16A949A921A8481000349BBA /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		16BE92F221A309F8003E8E43 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		16EF299D21B570EC00D9D268 /* SettingsController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsController.storyboard; sourceTree = "<group>"; };
+		16EF299F21B669D800D9D268 /* BlockCellSupportIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCellSupportIndex.swift; sourceTree = "<group>"; };
 		2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aus_sem_2_juraj_macak.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		856065257ECD5EB1B8BFD921 /* Pods-aus_sem_2_juraj_macak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.debug.xcconfig"; sourceTree = "<group>"; };
 		D80AE9AD4D49DBCFD112DA6C /* Pods-aus_sem_2_juraj_macak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.release.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				161F6B5721B4357900AA2D51 /* PropertyCell.swift */,
 				161F6B5921B4359300AA2D51 /* PropertyRegionNumberCell.swift */,
 				161F6B5B21B435A200AA2D51 /* PropertyUniqueCell.swift */,
+				16EF299F21B669D800D9D268 /* BlockCellSupportIndex.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				161F6B4021B3F5FC00AA2D51 /* ActionsViewDelegate.swift in Sources */,
 				161F6B5321B4346200AA2D51 /* ListViewModel.swift in Sources */,
 				161F6B4521B3FDC300AA2D51 /* SettingsController.swift in Sources */,
+				16EF29A021B669D800D9D268 /* BlockCellSupportIndex.swift in Sources */,
 				161F6B3C21B3F5EB00AA2D51 /* ActionsController.swift in Sources */,
 				161F6B5821B4357900AA2D51 /* PropertyCell.swift in Sources */,
 				1666E4C021A82A6700D6496B /* Constants.swift in Sources */,
