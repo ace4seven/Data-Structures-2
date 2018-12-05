@@ -10,5 +10,8 @@ import Foundation
 
 enum C {
     public static let DOC_PATH = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    public static let SEPARATOR = "👺"
+    
+    public static let EXPORT_DOC = "operation_memory_backup"
 }
 

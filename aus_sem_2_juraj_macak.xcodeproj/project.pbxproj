@@ -49,6 +49,8 @@
 		16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BE92F221A309F8003E8E43 /* Extensions.swift */; };
 		16EF299E21B570EC00D9D268 /* SettingsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EF299D21B570EC00D9D268 /* SettingsController.storyboard */; };
 		16EF29A021B669D800D9D268 /* BlockCellSupportIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF299F21B669D800D9D268 /* BlockCellSupportIndex.swift */; };
+		16EF29A321B6B89600D9D268 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF29A221B6B89600D9D268 /* Stack.swift */; };
+		16EF29A521B7166400D9D268 /* BackupFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF29A421B7166400D9D268 /* BackupFile.swift */; };
 		25D072CFFB7B8C643195DB9D /* libPods-aus_sem_2_juraj_macak.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		16BE92F221A309F8003E8E43 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		16EF299D21B570EC00D9D268 /* SettingsController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsController.storyboard; sourceTree = "<group>"; };
 		16EF299F21B669D800D9D268 /* BlockCellSupportIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCellSupportIndex.swift; sourceTree = "<group>"; };
+		16EF29A221B6B89600D9D268 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		16EF29A421B7166400D9D268 /* BackupFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFile.swift; sourceTree = "<group>"; };
 		2E805B9848EACC6BB5E19267 /* libPods-aus_sem_2_juraj_macak.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aus_sem_2_juraj_macak.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		856065257ECD5EB1B8BFD921 /* Pods-aus_sem_2_juraj_macak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.debug.xcconfig"; sourceTree = "<group>"; };
 		D80AE9AD4D49DBCFD112DA6C /* Pods-aus_sem_2_juraj_macak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aus_sem_2_juraj_macak.release.xcconfig"; path = "Pods/Target Support Files/Pods-aus_sem_2_juraj_macak/Pods-aus_sem_2_juraj_macak.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				1666E4BF21A82A6700D6496B /* Constants.swift */,
 				1612016E21A9977600EAAF0B /* ByteConverter.swift */,
 				161F6B3321B3E63200AA2D51 /* Config.swift */,
+				16EF29A421B7166400D9D268 /* BackupFile.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 		16891E392197125600C11030 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
+				16EF29A121B6B88400D9D268 /* Stack */,
 				16A2299C21AB35EF00026C54 /* Hash */,
 			);
 			path = Structures;
@@ -308,6 +314,14 @@
 				16A229A021AB362300026C54 /* Trie.swift */,
 			);
 			path = Trie;
+			sourceTree = "<group>";
+		};
+		16EF29A121B6B88400D9D268 /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				16EF29A221B6B89600D9D268 /* Stack.swift */,
+			);
+			path = Stack;
 			sourceTree = "<group>";
 		};
 		45004D08D96B00CA3C217AF1 /* Pods */ = {
@@ -439,6 +453,7 @@
 				16854D19219DAFBE0078619B /* Block.swift in Sources */,
 				167067E121B347DA00D0F1A3 /* CoreHash.swift in Sources */,
 				16854D1B219DAFCC0078619B /* DynamicHash.swift in Sources */,
+				16EF29A521B7166400D9D268 /* BackupFile.swift in Sources */,
 				161F6B5621B4356600AA2D51 /* BlockCell.swift in Sources */,
 				1612016F21A9977600EAAF0B /* ByteConverter.swift in Sources */,
 				167067DF21B342B300D0F1A3 /* PropertyByUnique.swift in Sources */,
@@ -450,6 +465,7 @@
 				16854D17219DAFB60078619B /* Record.swift in Sources */,
 				161F6B3921B3F56500AA2D51 /* PropertyDescStorage.swift in Sources */,
 				161F6B3721B3F54400AA2D51 /* RegionNameStorage.swift in Sources */,
+				16EF29A321B6B89600D9D268 /* Stack.swift in Sources */,
 				161F6B4D21B4344700AA2D51 /* ListController.swift in Sources */,
 				161E87B521B48BCC00B942FF /* PropertyDetailController.swift in Sources */,
 				16BE92F321A309F8003E8E43 /* Extensions.swift in Sources */,

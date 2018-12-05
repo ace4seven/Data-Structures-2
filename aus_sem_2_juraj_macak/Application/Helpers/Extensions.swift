@@ -78,6 +78,16 @@ extension UInt {
 
 extension String {
     
+    func stringToArray() -> [UInt8] {
+        var result: [UInt8] = []
+        
+        for char in self {
+            result.append(UInt8(String(char))!)
+        }
+        
+        return result
+    }
+    
     var staticHash: Int {
         var hash = Int (5381)
         let buf = [UInt8](self.utf8)

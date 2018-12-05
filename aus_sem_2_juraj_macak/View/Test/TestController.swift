@@ -33,13 +33,29 @@ class TestController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        dynamicTest(numbOfRecords: 100, deep: 0, mainFileSize: 1, supportFileSize: 1, duplicityChance: .weak)
-        dynamicPropertyTest(numbOfRecords: 10000, deep: 15, mainFileSize: 4, supportFileSize: 3, duplicityChance: .none)
+//        dynamicTest(numbOfRecords: 1000, deep: 10, mainFileSize: 4, supportFileSize: 2, duplicityChance: .none)
+//        dynamicPropertyTest(numbOfRecords: 1000, deep: 5, mainFileSize: 4, supportFileSize: 2, duplicityChance: .weak)
+        testExport()
     }
     
 }
 
 extension TestController {
+    
+    func testExport() {
+        let dynamicHash = DynamicHash(deep: 0, mainFileSize: 4, supportFileSize: 2, fileManager: UnFileManager<TestModel>(mainFileName: "main_test", supportingFileName: "support_test"))
+        
+        for _ in stride(from: 1, to: 100, by: 1) {
+            var index = Int.random(in: 1...1000000)
+            
+            while !dynamicHash.insert(TestModel(id: index, desc: "a")) {
+                index = Int.random(in: 1...1000000)
+            }
+        }
+        
+        let export = dynamicHash.prepareForExport()
+        
+    }
     
     func dynamicTest(numbOfRecords: Int, deep: Int, mainFileSize: Int, supportFileSize: Int, duplicityChance: DuplicityChance) {
          let dynamicHash = DynamicHash(deep: deep, mainFileSize: mainFileSize, supportFileSize: supportFileSize, fileManager: UnFileManager<TestModel>(mainFileName: "main_test", supportingFileName: "support_test"))
@@ -58,7 +74,7 @@ extension TestController {
         for _ in stride(from: 1, to: numbOfRecords + 1, by: 1) {
             var index = Int.random(in: 1...1000000)
             
-            while !dynamicHash.insert(TestModel(id: index, desc: "Lorem ipsum dolor")) {
+            while !dynamicHash.insert(TestModel(id: index, desc: "a".substring(toIndex: 20))) {
                 index = Int.random(in: 1...1000000)
             }
             
@@ -66,7 +82,7 @@ extension TestController {
             addedIndexes.append(index)
             
             if Int.random(in: 0...100) < duplicityChance.value && addedIndexes.count > 0 {
-                if !dynamicHash.insert(TestModel(id: addedIndexes[Int.random(in: 0..<addedIndexes.count)], desc: "Lorem")) {
+                if !dynamicHash.insert(TestModel(id: addedIndexes[Int.random(in: 0..<addedIndexes.count)], desc: "a".substring(toIndex: 20))) {
                     print("⚠️  \(index) - DUPLICITY not added")
                 } else {
                     addedIntoFile += 1
@@ -85,7 +101,7 @@ extension TestController {
         print()
         
         for index in addedIndexes {
-            let record = dynamicHash.find(TestModel(id: index, desc: "aaaaaaaaaaaaaaaa"))
+            let record = dynamicHash.find(TestModel(id: index, desc: "a".substring(toIndex: 20)))
             if record == nil {
                 print("☠️ \(index) sa nepodarilo najst")
                 return

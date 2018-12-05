@@ -15,6 +15,8 @@ protocol ActionsVM: class {
     func searchByNameAndId(regionName: String, propertyID: UInt)
     func addProperty(property: Property)
     func changeDesc(propertyUnique: UInt, desc: String)
+    func backup()
+    func loadMemory()
 }
 
 protocol ActionsViewDelegate: class {

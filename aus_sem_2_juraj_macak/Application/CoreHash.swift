@@ -215,13 +215,20 @@ extension CoreHash {
     }
     
     func backupSystem() -> Bool {
-        
-        return false
+        let backupFile = BackupFile(fileName: C.EXPORT_DOC)
+        return backupFile.exportToFile(freeUnorderedFileIndex: self.freeIndex, uniqueHash: dynamicHashUnique.prepareForExport(), regionNameIDHash: dynamicHashRnamePId.prepareForExport())
     }
     
     func recoverSystem() -> Bool {
+        let backupFile = BackupFile(fileName: C.EXPORT_DOC)
+        let importedData = backupFile.importFromFile()
         
-        return false
+        self.freeIndex = importedData.freeUnorderedFileIndex
+        
+        self.dynamicHashUnique = DynamicHash<PropertyByUnique>.init(deep: config?.deep ?? 10, mainFileSize: config?.mainFileSize ?? 4, supportFileSize: config?.supportFileSize ?? 2, recoveryData: importedData.uniqueHash, fileManager: UnFileManager<PropertyByUnique>.init(mainFileName: "properties_unique", supportingFileName: "properties_unique_sp"))
+        self.dynamicHashRnamePId = DynamicHash<PropertyByRegionAndNumber>.init(deep:  config?.deep ?? 10, mainFileSize:  config?.mainFileSize ?? 4, supportFileSize:  config?.supportFileSize ?? 2, recoveryData: importedData.regionNameIDHash, fileManager: UnFileManager<PropertyByRegionAndNumber>.init(mainFileName: "properties_reg", supportingFileName: "properties_reg_sp"))
+        
+        return true
     }
     
 }

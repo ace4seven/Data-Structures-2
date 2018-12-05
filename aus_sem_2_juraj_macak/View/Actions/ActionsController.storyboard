@@ -130,6 +130,18 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Akcie" image="action_tab_ico" id="2lM-cP-WNa"/>
                     <navigationItem key="navigationItem" id="UrR-KF-SCX">
+                        <leftBarButtonItems>
+                            <barButtonItem image="save_ico" id="IG7-hL-aij">
+                                <connections>
+                                    <action selector="backupMemory" destination="Zb6-vy-wFI" id="5uT-LM-rvi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="load_ico" id="Erh-w9-MWD">
+                                <connections>
+                                    <action selector="loadMemory" destination="Zb6-vy-wFI" id="FZ0-Di-nb2"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" image="cog_ico" id="flM-8f-VKN">
                             <connections>
                                 <segue destination="u6R-Bv-GJt" kind="show" id="sAV-d2-waA"/>
@@ -184,5 +196,7 @@
     <resources>
         <image name="action_tab_ico" width="30" height="25"/>
         <image name="cog_ico" width="25" height="25"/>
+        <image name="load_ico" width="24" height="25"/>
+        <image name="save_ico" width="25" height="25"/>
     </resources>
 </document>

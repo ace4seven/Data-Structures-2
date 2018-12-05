@@ -45,6 +45,14 @@ extension ActionsController: ActionsViewDelegate {
 
 extension ActionsController {
     
+    @IBAction func loadMemory() {
+        viewModel.loadMemory()
+    }
+    
+    @IBAction func backupMemory() {
+        viewModel.backup()
+    }
+    
     @IBAction func changeDescriptionButtonPressed() {
         changeDescForm()
     }
@@ -116,7 +124,7 @@ extension ActionsController {
         let searchAction = UIAlertAction(title: "Zmeniť", style: .default, handler: { alert -> Void in
             let uniqueTextfield = alertController.textFields![0] as UITextField
             let descTextField = alertController.textFields![1] as UITextField
-            self.viewModel.changeDesc(propertyUnique: UInt(uniqueTextfield.text ?? "") ?? 0, desc: descTextField.text ?? "")
+            self.viewModel.changeDesc(propertyUnique: UInt(uniqueTextfield.text ?? "") ?? 0, desc: descTextField.text?.substring(toIndex: 20) ?? "")
         })
         let cancelAction = UIAlertAction(title: "Zrušiť", style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
@@ -184,7 +192,7 @@ extension ActionsController {
                 return
             }
             
-            self.viewModel.addProperty(property: Property(uniqueID: uniqueID, propertyID: propertyID, regionName: regionName, desc: desc))
+            self.viewModel.addProperty(property: Property(uniqueID: uniqueID, propertyID: propertyID, regionName: regionName.substring(toIndex: 15), desc: desc.substring(toIndex: 20)))
         })
         let cancelAction = UIAlertAction(title: "Zrušiť", style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
