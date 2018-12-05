@@ -81,20 +81,67 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1Z-Zq-puj">
+                                <rect key="frame" x="15" y="394" width="345" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zmena popisu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-xZ-mIf">
+                                        <rect key="frame" x="99.5" y="57" width="146.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" white="0.86805258279999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxo-h3-Qxf">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="140"/>
+                                        <connections>
+                                            <action selector="changeDescriptionButtonPressed" destination="Zb6-vy-wFI" eventType="touchUpInside" id="vPv-0w-xyA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="Gzc-xZ-mIf" firstAttribute="centerX" secondItem="D1Z-Zq-puj" secondAttribute="centerX" id="AUP-5u-ub7"/>
+                                    <constraint firstAttribute="bottom" secondItem="dxo-h3-Qxf" secondAttribute="bottom" id="HFq-us-ZLW"/>
+                                    <constraint firstItem="Gzc-xZ-mIf" firstAttribute="centerY" secondItem="D1Z-Zq-puj" secondAttribute="centerY" id="MLP-dW-YEY"/>
+                                    <constraint firstItem="dxo-h3-Qxf" firstAttribute="top" secondItem="D1Z-Zq-puj" secondAttribute="top" id="Ojw-ib-cTy"/>
+                                    <constraint firstAttribute="trailing" secondItem="dxo-h3-Qxf" secondAttribute="trailing" id="OsU-0B-Mc6"/>
+                                    <constraint firstItem="dxo-h3-Qxf" firstAttribute="leading" secondItem="D1Z-Zq-puj" secondAttribute="leading" id="QlZ-Tn-fgb"/>
+                                    <constraint firstAttribute="height" constant="140" id="Skw-1A-Qg2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="m7E-iW-K3A" firstAttribute="leading" secondItem="PK4-mh-7pC" secondAttribute="leading" constant="15" id="A0s-II-DS4"/>
+                            <constraint firstItem="D1Z-Zq-puj" firstAttribute="top" secondItem="vJT-t6-wTF" secondAttribute="bottom" constant="15" id="FZa-eo-jTJ"/>
                             <constraint firstItem="m7E-iW-K3A" firstAttribute="top" secondItem="PK4-mh-7pC" secondAttribute="top" constant="20" id="Fdv-Gl-yQE"/>
                             <constraint firstItem="vJT-t6-wTF" firstAttribute="leading" secondItem="PK4-mh-7pC" secondAttribute="leading" constant="15" id="JeU-K1-TMg"/>
                             <constraint firstItem="vJT-t6-wTF" firstAttribute="top" secondItem="m7E-iW-K3A" secondAttribute="bottom" constant="15" id="OK9-dh-hJl"/>
                             <constraint firstItem="PK4-mh-7pC" firstAttribute="trailing" secondItem="vJT-t6-wTF" secondAttribute="trailing" constant="15" id="Rib-cw-6WG"/>
+                            <constraint firstItem="D1Z-Zq-puj" firstAttribute="leading" secondItem="PK4-mh-7pC" secondAttribute="leading" constant="15" id="i9b-1Z-aLg"/>
+                            <constraint firstItem="PK4-mh-7pC" firstAttribute="trailing" secondItem="D1Z-Zq-puj" secondAttribute="trailing" constant="15" id="ias-3c-huf"/>
                             <constraint firstItem="PK4-mh-7pC" firstAttribute="trailing" secondItem="m7E-iW-K3A" secondAttribute="trailing" constant="15" id="vRx-pC-lyu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PK4-mh-7pC"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Akcie" image="action_tab_ico" id="2lM-cP-WNa"/>
                     <navigationItem key="navigationItem" id="UrR-KF-SCX">
+                        <leftBarButtonItems>
+                            <barButtonItem image="save_ico" id="IG7-hL-aij">
+                                <connections>
+                                    <action selector="backupMemory" destination="Zb6-vy-wFI" id="5uT-LM-rvi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="load_ico" id="Erh-w9-MWD">
+                                <connections>
+                                    <action selector="loadMemory" destination="Zb6-vy-wFI" id="FZ0-Di-nb2"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" image="cog_ico" id="flM-8f-VKN">
                             <connections>
                                 <segue destination="u6R-Bv-GJt" kind="show" id="sAV-d2-waA"/>
@@ -149,5 +196,7 @@
     <resources>
         <image name="action_tab_ico" width="30" height="25"/>
         <image name="cog_ico" width="25" height="25"/>
+        <image name="load_ico" width="24" height="25"/>
+        <image name="save_ico" width="25" height="25"/>
     </resources>
 </document>

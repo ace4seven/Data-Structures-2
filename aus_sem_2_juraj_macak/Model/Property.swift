@@ -13,7 +13,7 @@ class Property {
     let uniqueID: UInt
     let propertyID: UInt
     let regionName: String
-    let desc: String
+    var desc: String
     
     init(uniqueID: UInt,
          propertyID: UInt,

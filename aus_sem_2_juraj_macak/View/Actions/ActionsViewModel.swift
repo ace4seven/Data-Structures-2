@@ -11,6 +11,8 @@ import Foundation
 enum ActionMessage {
     case notFound
     case duplicity
+    case backupComplete
+    case loadComplete
     
     var value: String {
         switch self {
@@ -18,6 +20,11 @@ enum ActionMessage {
             return "Nehnuteľnosť sa nenašla"
         case .duplicity:
             return "Položku sa nepodarilo pridať, pretože už existuje s daným kľúčom"
+        case .backupComplete:
+            return "Záloha operačnej pamäte prebehla úspešne"
+        case .loadComplete:
+            return "Obnova operačnej pamäte prebehla úspešne"
+            
         }
     }
 }
@@ -29,6 +36,26 @@ class ActionsViewModel {
 }
 
 extension ActionsViewModel: ActionsVM {
+    
+    func loadMemory() {
+        if CoreHash.shared.recoverSystem() {
+            viewDelegate?.showAlert(message: .loadComplete)
+        }
+    }
+    
+    func backup() {
+        if CoreHash.shared.backupSystem() {
+            viewDelegate?.showAlert(message: .backupComplete)
+        }
+    }
+    
+    func changeDesc(propertyUnique: UInt, desc: String) {
+        if let property = CoreHash.shared.changePropertyDesc(uniqueID: propertyUnique, desc: desc) {
+            viewDelegate?.showDetail(property: property)
+        } else {
+            viewDelegate?.showAlert(message: .notFound)
+        }
+    }
     
     func addProperty(property: Property) {
         if CoreHash.shared.insertProperty(property: property) {

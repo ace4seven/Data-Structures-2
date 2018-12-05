@@ -8,6 +8,14 @@
 
 import Foundation
 
+struct DynamicHashExport {
+    
+    let freeOffset: UInt64
+    let freeSupportOffset: Int64
+    var trieData: [ExternalNodeRow]
+    
+}
+
 class DynamicHash<T: Record> {
     
     fileprivate let deep: Int
@@ -22,9 +30,6 @@ class DynamicHash<T: Record> {
     fileprivate var mainFileSize: Int
     fileprivate var supportFileSize: Int
     
-    fileprivate var maxBlockInMainFile: Int? = nil
-    fileprivate var maxBlockInSupportFile: Int? = nil
-    
     fileprivate var freeOffset: UInt64 = 0
     fileprivate var freeSupportingOffset: Int64 = 0
 
@@ -37,14 +42,16 @@ class DynamicHash<T: Record> {
         self.block = Block<T>.init(maxRecordsCount: mainFileSize, offset: 0)
     }
     
-    init(deep: Int, mainFileSize: Int, supportFileSize: Int, maxBlockMainFile: Int, maxBlockSupportFile: Int, fileManager: UnFileManager<T>) {
+    init(deep: Int, mainFileSize: Int, supportFileSize: Int, recoveryData: DynamicHashExport, fileManager: UnFileManager<T>) {
         self.deep = deep
         self.fm = fileManager
         self.mainFileSize = mainFileSize
         self.supportFileSize = supportFileSize
         
-        self.maxBlockInMainFile = maxBlockMainFile
-        self.maxBlockInSupportFile = maxBlockSupportFile
+        self.freeOffset = recoveryData.freeOffset
+        self.freeSupportingOffset = recoveryData.freeSupportOffset
+        
+        self.trie = Trie(recovery: recoveryData.trieData)
     }
     
 }
@@ -53,6 +60,13 @@ class DynamicHash<T: Record> {
 
 extension DynamicHash {
     
+    func prepareForExport() -> DynamicHashExport {
+        return DynamicHashExport(
+            freeOffset: self.freeOffset,
+            freeSupportOffset: self.freeSupportingOffset,
+            trieData: trie.prepareToExport())
+    }
+
     func removeFiles() {
         self.fm.removeFiles()
     }

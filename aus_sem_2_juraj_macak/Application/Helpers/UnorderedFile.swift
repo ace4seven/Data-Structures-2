@@ -70,14 +70,14 @@ extension UnorderedFile {
     }
     
     func removeFile() {
-        do {
-            try fileManager.removeItem(atPath: self.filePath)
-        } catch(let error) {
-            print("Subor sa nepodarilo odstranin: \(error.localizedDescription)")
-        }
-        print("Subor vymazany \(filePath)")
-        
-        fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
+//        do {
+//            try fileManager.removeItem(atPath: self.filePath)
+//        } catch(let error) {
+//            print("Subor sa nepodarilo odstranin: \(error.localizedDescription)")
+//        }
+//        print("Subor vymazany \(filePath)")
+//
+//        fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
     }
     
 }
