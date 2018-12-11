@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Variables
+
 class CoreHash {
     public static let shared = CoreHash()
     
@@ -20,6 +22,7 @@ class CoreHash {
     fileprivate let unOrderedFile = UnorderedFile<Property>(fileName: "properties")
     fileprivate var dynamicHashUnique: DynamicHash<PropertyByUnique>
     fileprivate var dynamicHashRnamePId: DynamicHash<PropertyByRegionAndNumber>
+    
     fileprivate var freeIndex: Int = -1
     fileprivate var config: Config?
     
