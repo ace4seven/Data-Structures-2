@@ -1,0 +1,6 @@
+module Pods_aus_sem_2_juraj_macak {
+  umbrella header "Pods-aus_sem_2_juraj_macak-umbrella.h"
+
+  export *
+  module * { export * }
+}

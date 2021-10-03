@@ -9,32 +9,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--TestController-->
-        <scene sceneID="8v7-RY-dXo">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TestController" id="BEv-JE-jau" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kel-Tw-pFg"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uqz-Uf-bJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="844" y="133"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="61f-dw-X5l">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Wsm-z6-8Ih" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tEr-5Y-bkH">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.52156862749999999" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BEv-JE-jau" kind="relationship" relationship="viewControllers" id="A7M-sr-kLn"/>
+                        <segue destination="ucZ-6S-f54" kind="relationship" relationship="viewControllers" id="nKB-UJ-1Z4"/>
+                        <segue destination="ojY-xU-ctb" kind="relationship" relationship="viewControllers" id="cd5-dB-n60"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-ZY-bsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+        <!--ActionsController-->
+        <scene sceneID="65S-36-m55">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ActionsController" id="ucZ-6S-f54" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="OW1-Wv-ov0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gqn-0X-R4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="133"/>
+        </scene>
+        <!--ControlOptionsController-->
+        <scene sceneID="1dU-hQ-WIC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ControlOptionsController" id="ojY-xU-ctb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2Sd-Bk-EdB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hi4-oa-lhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="207"/>
         </scene>
     </scenes>
 </document>
